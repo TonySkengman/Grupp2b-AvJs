@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "price": 9999,
+      "stock": 5
+    },
+    {
+      "id": "2",
+      "name": "Mobil",
+      "price": 4999,
+      "stock": 12
+    },
+    {
+      "id": "3",
+      "name": "Surfplatta",
+      "price": 3499,
+      "stock": 8
+    },
+    {
+      "id": "4",
+      "name": "Trådlösa hörlurar",
+      "price": 1299,
+      "stock": 15
+    },
+    {
+      "id": "5",
+      "name": "Tangentbord",
+      "price": 899,
+      "stock": 20
+    },
+    {
+      "id": "6",
+      "name": "Datormus",
+      "price": 599,
+      "stock": 25
+    },
+    {
+      "id": "7",
+      "name": "Bildskärm",
+      "price": 2499,
+      "stock": 7
+    },
+    {
+      "id": "8",
+      "name": "Webbkamera",
+      "price": 799,
+      "stock": 10
+    },
+    {
+      "id": "9",
+      "name": "Gamingstol",
+      "price": 2999,
+      "stock": 4
+    },
+    {
+      "id": "10",
+      "name": "USB-kabel",
+      "price": 199,
+      "stock": 30
+    },
+    {
+      "id": "11",
+      "name": "Powerbank",
+      "price": 499,
+      "stock": 18
+    },
+    {
+      "id": "12",
+      "name": "Bluetooth-högtalare",
+      "price": 1099,
+      "stock": 9
+    },
+    {
+      "id": "13",
+      "name": "Extern hårddisk",
+      "price": 1199,
+      "stock": 6
+    },
+    {
+      "id": "14",
+      "name": "USB-minne",
+      "price": 249,
+      "stock": 35
+    },
+    {
+      "id": "15",
+      "name": "Mikrofon",
+      "price": 1499,
+      "stock": 11
+    },
+    {
+      "id": "16",
+      "name": "Laptopställ",
+      "price": 399,
+      "stock": 14
+    },
+    {
+      "id": "17",
+      "name": "Musmatta",
+      "price": 299,
+      "stock": 22
+    },
+    {
+      "id": "18",
+      "name": "Smartklocka",
+      "price": 2499,
+      "stock": 5
+    },
+    {
+      "id": "19",
+      "name": "Router",
+      "price": 899,
+      "stock": 13
+    },
+    {
+      "id": "20",
+      "name": "HDMI-kabel",
+      "price": 149,
+      "stock": 40
+    }
+  ]
+}
