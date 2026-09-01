@@ -12,3 +12,23 @@
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #1f2937;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+}
+
+nav a:hover {
+    background-color: #374151;
+}

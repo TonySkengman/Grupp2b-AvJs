@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-export default function ProductsLists({ products }) {
+export default function ProductsList({ products }) {
     return (
         <div className="product-grid">
             {products.map((p) => (

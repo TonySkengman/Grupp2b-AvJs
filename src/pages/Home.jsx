@@ -1,17 +1,12 @@
 import ProductsList from "../components/ProductsLists";
 import { useEffect, useState } from "react";
 
-
 export default function Home() {
     const [products, setProducts] = useState([]);
 
     async function getProducts() {
-
         const response = await fetch("/api/products");
-
         const result = await response.json();
-
-        console.log(result);
 
         if (response.ok) {
             setProducts(result);
@@ -26,7 +21,7 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Home</h1>
+            <h1>Våra Produkter</h1>
             <ProductsList products={products} />
         </div>
     )
