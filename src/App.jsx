@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { CartProvider, useCart } from "./context/CartContext";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import ProductDetails from "./pages/ProductDetails";
 
 function Nav() {
     const { lines } = useCart();
@@ -23,6 +24,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/products/:id" element={<ProductDetails />} />
                 </Routes>
             </BrowserRouter>
         </CartProvider>
