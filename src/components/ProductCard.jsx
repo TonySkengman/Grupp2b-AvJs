@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
@@ -13,7 +14,7 @@ export default function ProductCard({ product }) {
                 {product.price}kr
             </p>
             <p>
-            <p>{available > 0 ? "Finns i lager" : "Slut i lager"}</p>
+                {available > 0 ? "Finns i lager" : "Slut i lager"}
             </p>
             <button
                 onClick={() => addToCart(product)}
@@ -21,9 +22,9 @@ export default function ProductCard({ product }) {
             >
                 Lägg i varukorg
             </button>
-            <button>
-                Produktdetaljer
-            </button>
+            <Link to={`/products/${product.id}`}>
+                <button>Produktdetaljer</button>
+            </Link>
         </div>
     )
 }
