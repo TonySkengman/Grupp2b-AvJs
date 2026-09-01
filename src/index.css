@@ -13,6 +13,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.product-card:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+.product-card {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
 nav {
     display: flex;
     gap: 1rem;
