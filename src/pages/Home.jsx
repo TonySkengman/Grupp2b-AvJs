@@ -21,7 +21,7 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Våra Produkter</h1>
+            <h1 className="title">Våra Produkter</h1>
             <ProductsList products={products} />
         </div>
     )
