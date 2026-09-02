@@ -9,6 +9,10 @@
     padding: 30px 20px;
 }
 
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .product-card {
     display: flex;
     align-items: center;
