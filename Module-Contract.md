@@ -3,15 +3,12 @@
 ## 1. Modulform
 
 Varje modul ska exportera en klass som default och ha en statisk descriptor.
-
 Descriptorn ska kunna läsas utan att modulen behöver skapas först.
-
 Själva logiken körs sedan på en instans av modulen.
 
 ## 2. Felhantering
 
 Om något blir fel ska modulen kasta ett `Error` med ett tydligt felmeddelande som går att visa direkt i React.
-
 Modulen ska inte returnera `undefined` eller bara ignorera fel.
 
 ## 3. Valideringsansvar
