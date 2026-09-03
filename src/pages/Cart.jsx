@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
@@ -21,6 +22,9 @@ export default function Cart() {
                         ))}
                     </ul>
                     <p><strong>Summa: {subtotal} kr</strong></p>
+                    <Link to="/checkout">
+                        <button>Gå till kassan</button>
+                    </Link>
                 </>
             )}
         </div>
