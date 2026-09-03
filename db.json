@@ -4,121 +4,1488 @@
       "id": "1",
       "name": "Laptop",
       "price": 9999,
-      "stock": 5
+      "stock": 5,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-LAP-001",
+      "weightKg": 1.8,
+      "dimensionsCm": {
+        "width": 32,
+        "height": 2,
+        "depth": 22
+      },
+      "description": "Kraftfull och lättburen laptop för både jobb och nöje, med snabb processor och lång batteritid.",
+      "image": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/macbook-pro-14-inch-m5.png",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "2",
-      "name": "Mobil",
+      "name": "Iphone 17 Pro",
       "price": 4999,
-      "stock": 12
+      "stock": 12,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-MOB-002",
+      "weightKg": 0.19,
+      "dimensionsCm": {
+        "width": 7.2,
+        "height": 0.8,
+        "depth": 15.2
+      },
+      "description": "Modern smartphone med skarp skärm, bra kamera och snabb prestanda för vardagsbruk.",
+      "image": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/iphone-17-pro-17-pro-max-hero.png",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "3",
       "name": "Surfplatta",
       "price": 3499,
-      "stock": 8
+      "stock": 8,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-TAB-003",
+      "weightKg": 0.48,
+      "dimensionsCm": {
+        "width": 18,
+        "height": 0.7,
+        "depth": 25
+      },
+      "description": "Tunn och smidig surfplatta perfekt för film, läsning och lätt kontorsarbete.",
+      "image": "https://thumbs.wbm.im/pw/medium/9ac8d6b8b927839a8a41ec874529957a.png",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "4",
       "name": "Trådlösa hörlurar",
       "price": 1299,
-      "stock": 15
+      "stock": 15,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-HEA-004",
+      "weightKg": 0.08,
+      "dimensionsCm": {
+        "width": 10,
+        "height": 4,
+        "depth": 10
+      },
+      "description": "Bekväma in-ear-hörlurar med brusreducering och lång batteritid för musik och samtal.",
+      "image": "https://yamada-denkiweb-media.com/wp-content/uploads/2024/09/AdobeStock_332698170-scaled-1.jpeg",
+      "currency": "SEK",
+      "reorderPoint": 4,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "5",
       "name": "Tangentbord",
       "price": 899,
-      "stock": 20
+      "stock": 20,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-KEY-005",
+      "weightKg": 0.85,
+      "dimensionsCm": {
+        "width": 44,
+        "height": 4,
+        "depth": 14
+      },
+      "description": "Mekaniskt tangentbord med tydlig känsla i knapptrycken, byggt för både gaming och kontorsarbete.",
+      "image": "https://images.clasohlson.com/medias/sys_master/h8e/hef/68816206364702.jpg",
+      "currency": "SEK",
+      "reorderPoint": 5,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "6",
       "name": "Datormus",
       "price": 599,
-      "stock": 25
+      "stock": 25,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-MOU-006",
+      "weightKg": 0.12,
+      "dimensionsCm": {
+        "width": 7,
+        "height": 4,
+        "depth": 12
+      },
+      "description": "Ergonomisk trådlös mus med precis sensor, passar lika bra för arbete som för spel.",
+      "image": "https://img.pikbest.com/png-images/20240601/wireless-computer-mouse-on-white-background_10593217.png!w700wp",
+      "currency": "SEK",
+      "reorderPoint": 7,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "7",
       "name": "Bildskärm",
       "price": 2499,
-      "stock": 7
+      "stock": 7,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-MON-007",
+      "weightKg": 4.5,
+      "dimensionsCm": {
+        "width": 54,
+        "height": 42,
+        "depth": 18
+      },
+      "description": "Full HD-skärm med skarpa färger och tunna kanter, perfekt för multitasking eller spel.",
+      "image": "https://www.publicdomainpictures.net/pictures/20000/velka/blank-monitor-112996054549vN.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "8",
       "name": "Webbkamera",
       "price": 799,
-      "stock": 10
+      "stock": 10,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-WEB-008",
+      "weightKg": 0.15,
+      "dimensionsCm": {
+        "width": 10,
+        "height": 7,
+        "depth": 6
+      },
+      "description": "HD-webbkamera med inbyggd mikrofon för tydliga videosamtal och streaming.",
+      "image": "https://img.pikbest.com/png-images/20250120/webcam-isolated-on-transperant-background_11421198.png!w700wp",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "9",
       "name": "Gamingstol",
       "price": 2999,
-      "stock": 4
+      "stock": 4,
+      "category": "furniture",
+      "taxCategory": "standard",
+      "sku": "FUR-CHA-009",
+      "weightKg": 18,
+      "dimensionsCm": {
+        "width": 70,
+        "height": 85,
+        "depth": 35
+      },
+      "description": "Justerbar gamingstol med bra ryggstöd, byggd för långa sessioner framför datorn.",
+      "image": "https://wallpapers.com/images/hd/executive-gaming-chair-png-05252024-u9ue86uerdo12g78.png",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "10",
       "name": "USB-kabel",
       "price": 199,
-      "stock": 30
+      "stock": 30,
+      "category": "accessories",
+      "taxCategory": "standard",
+      "sku": "ACC-USB-010",
+      "weightKg": 0.08,
+      "dimensionsCm": {
+        "width": 12,
+        "height": 3,
+        "depth": 8
+      },
+      "description": "Slitstark USB-kabel för snabb laddning och dataöverföring.",
+      "image": "https://wallpapers.com/images/hd/white-u-s-b-c-cable-4zpu2e2n35n5e1ue-4zpu2e2n35n5e1ue.png",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "11",
       "name": "Powerbank",
       "price": 499,
-      "stock": 18
+      "stock": 18,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-POW-011",
+      "weightKg": 0.25,
+      "dimensionsCm": {
+        "width": 7,
+        "height": 2,
+        "depth": 14
+      },
+      "description": "Kompakt powerbank som laddar dina enheter flera gånger om, perfekt att ha med på resan.",
+      "image": "https://img.pikbest.com/png-images/20241012/power-bank-on-white-background_10955174.png!w700wp",
+      "currency": "SEK",
+      "reorderPoint": 5,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "12",
       "name": "Bluetooth-högtalare",
       "price": 1099,
-      "stock": 9
+      "stock": 9,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-SPE-012",
+      "weightKg": 0.75,
+      "dimensionsCm": {
+        "width": 20,
+        "height": 9,
+        "depth": 9
+      },
+      "description": "Bärbar högtalare med kraftfullt ljud och vattentåligt hölje för utomhusbruk.",
+      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&q=80&w=1000",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "13",
       "name": "Extern hårddisk",
       "price": 1199,
-      "stock": 6
+      "stock": 6,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-HDD-013",
+      "weightKg": 0.22,
+      "dimensionsCm": {
+        "width": 12,
+        "height": 2,
+        "depth": 8
+      },
+      "description": "Stor lagringskapacitet i ett kompakt format, perfekt för backup av bilder och filer.",
+      "image": "https://images.pexels.com/photos/20076002/pexels-photo-20076002.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "14",
       "name": "USB-minne",
       "price": 249,
-      "stock": 35
+      "stock": 35,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-FLA-014",
+      "weightKg": 0.02,
+      "dimensionsCm": {
+        "width": 6,
+        "height": 1,
+        "depth": 2
+      },
+      "description": "Snabbt och pålitligt USB-minne för att enkelt flytta filer mellan enheter.",
+      "image": "https://badgeland.se/media/webp_image/catalog/product/cache/dd4850ad4231b6306bceadf38a0bbeed/2/1/21213-001-P.webp",
+      "currency": "SEK",
+      "reorderPoint": 9,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "15",
       "name": "Mikrofon",
       "price": 1499,
-      "stock": 11
+      "stock": 11,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-MIC-015",
+      "weightKg": 0.55,
+      "dimensionsCm": {
+        "width": 18,
+        "height": 12,
+        "depth": 12
+      },
+      "description": "USB-mikrofon med klart ljud, perfekt för streaming, podcasts och videosamtal.",
+      "image": "https://m.media-amazon.com/images/I/71X8RYP4APL._AC_UF1000,1000_QL80_.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "16",
       "name": "Laptopställ",
       "price": 399,
-      "stock": 14
+      "stock": 14,
+      "category": "accessories",
+      "taxCategory": "standard",
+      "sku": "ACC-STA-016",
+      "weightKg": 0.65,
+      "dimensionsCm": {
+        "width": 27,
+        "height": 5,
+        "depth": 24
+      },
+      "description": "Ergonomiskt ställ som lyfter laptopen till bättre ögonhöjd och förbättrar luftflödet.",
+      "image": "https://img.yfisher.com/m5812/1745222607962-63e9cc9dfbf0ca2748a2df9f72d01ce.jpg",
+      "currency": "SEK",
+      "reorderPoint": 4,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "17",
       "name": "Musmatta",
       "price": 299,
-      "stock": 22
+      "stock": 22,
+      "category": "accessories",
+      "taxCategory": "standard",
+      "sku": "ACC-MAT-017",
+      "weightKg": 0.45,
+      "dimensionsCm": {
+        "width": 40,
+        "height": 6,
+        "depth": 6
+      },
+      "description": "Stor musmatta med jämn yta för exakt precision vid både arbete och spel.",
+      "image": "https://cdn.myikas.com/images/f399643d-c483-4d9b-b12e-c0b07c3080f8/611794f2-2d34-4e3e-b40b-1c0e1a86bdc8/image_3840.webp",
+      "currency": "SEK",
+      "reorderPoint": 6,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "18",
       "name": "Smartklocka",
       "price": 2499,
-      "stock": 5
+      "stock": 5,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-WAT-018",
+      "weightKg": 0.06,
+      "dimensionsCm": {
+        "width": 10,
+        "height": 8,
+        "depth": 6
+      },
+      "description": "Smartklocka med pulsmätning, träningsläge och notiser direkt på handleden.",
+      "image": "https://img.pikbest.com/png-images/20241012/smartwatch-isolated-on-white-background_10954961.png!w700wp",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "19",
       "name": "Router",
       "price": 899,
-      "stock": 13
+      "stock": 13,
+      "category": "electronics",
+      "taxCategory": "standard",
+      "sku": "ELE-ROU-019",
+      "weightKg": 0.45,
+      "dimensionsCm": {
+        "width": 22,
+        "height": 6,
+        "depth": 16
+      },
+      "description": "Snabb WiFi-router med stabil täckning i hela hemmet, stödjer flera enheter samtidigt.",
+      "image": "https://img.pikbest.com/png-images/20241012/router-on-white-background_10955168.png!w700wp",
+      "currency": "SEK",
+      "reorderPoint": 4,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     },
     {
       "id": "20",
       "name": "HDMI-kabel",
       "price": 149,
-      "stock": 40
+      "stock": 40,
+      "category": "accessories",
+      "taxCategory": "standard",
+      "sku": "ACC-HDM-020",
+      "weightKg": 0.12,
+      "dimensionsCm": {
+        "width": 15,
+        "height": 4,
+        "depth": 10
+      },
+      "description": "Högkvalitativ HDMI-kabel för skarp bild och ljud mellan dina enheter.",
+      "image": "https://images.hifiklubben.com/image/ef4eb39d-21c6-446c-9af0-2244fdadf40d/pdp_f/esscl1hdmi1000.jpg",
+      "currency": "SEK",
+      "reorderPoint": 10,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "21",
+      "name": "Clean Code",
+      "price": 399,
+      "stock": 12,
+      "category": "books",
+      "taxCategory": "books",
+      "sku": "BOK-CLE-021",
+      "weightKg": 0.65,
+      "dimensionsCm": {
+        "width": 16,
+        "height": 3,
+        "depth": 24
+      },
+      "description": "En praktisk bok om hur man skriver ren, läsbar och underhållbar kod.",
+      "image": "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "22",
+      "name": "Java: The Complete Reference",
+      "price": 549,
+      "stock": 9,
+      "category": "books",
+      "taxCategory": "books",
+      "sku": "BOK-JAV-022",
+      "weightKg": 0.85,
+      "dimensionsCm": {
+        "width": 18,
+        "height": 5,
+        "depth": 24
+      },
+      "description": "Omfattande referensbok för Java med språkets grunder och mer avancerade delar.",
+      "image": "https://covers.openlibrary.org/b/isbn/9781265058432-L.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "23",
+      "name": "Eloquent JavaScript",
+      "price": 349,
+      "stock": 14,
+      "category": "books",
+      "taxCategory": "books",
+      "sku": "BOK-JS-023",
+      "weightKg": 0.55,
+      "dimensionsCm": {
+        "width": 16,
+        "height": 3,
+        "depth": 23
+      },
+      "description": "Bok om modern JavaScript-programmering med teori och praktiska exempel.",
+      "image": "https://covers.openlibrary.org/b/isbn/9781593279509-L.jpg",
+      "currency": "SEK",
+      "reorderPoint": 4,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "24",
+      "name": "Design Patterns",
+      "price": 499,
+      "stock": 7,
+      "category": "books",
+      "taxCategory": "books",
+      "sku": "BOK-DES-024",
+      "weightKg": 0.7,
+      "dimensionsCm": {
+        "width": 17,
+        "height": 4,
+        "depth": 24
+      },
+      "description": "Klassisk bok om återanvändbara lösningar på vanliga problem inom mjukvarudesign.",
+      "image": "https://covers.openlibrary.org/b/isbn/9780201633610-L.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "25",
+      "name": "The Pragmatic Programmer",
+      "price": 429,
+      "stock": 10,
+      "category": "books",
+      "taxCategory": "books",
+      "sku": "BOK-PRA-025",
+      "weightKg": 0.6,
+      "dimensionsCm": {
+        "width": 16,
+        "height": 3,
+        "depth": 23
+      },
+      "description": "Bok om praktiska arbetssätt, problemlösning och professionell programvaruutveckling.",
+      "image": "https://covers.openlibrary.org/b/isbn/9780135957059-L.jpg",
+      "currency": "SEK",
+      "reorderPoint": 3,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "26",
+      "name": "Red Bull Original",
+      "price": 24.9,
+      "stock": 30,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-RED-026",
+      "weightKg": 0.25,
+      "dimensionsCm": {
+        "width": 6.5,
+        "height": 15,
+        "depth": 6.5
+      },
+      "description": "Energidryck med koffein och klassisk smak.",
+      "image": "https://sudespensa.cl/cdn/shop/files/Energizante-RedBullOriginal250Ml.jpg?v=1772699195&width=1214",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "27",
+      "name": "Monster Energy Original",
+      "price": 29.9,
+      "stock": 24,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-MON-027",
+      "weightKg": 0.5,
+      "dimensionsCm": {
+        "width": 6.6,
+        "height": 17,
+        "depth": 6.6
+      },
+      "description": "Kolsyrad energidryck med fyllig smak och koffein.",
+      "image": "https://assets.icanet.se/image/upload/cs_srgb/t_product_large_2x_v1/v1668841866/np7sj3fwpcivyouyxsnh.webp",
+      "currency": "SEK",
+      "reorderPoint": 6,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "28",
+      "name": "Nocco Caribbean",
+      "price": 29.9,
+      "stock": 18,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-NOC-028",
+      "weightKg": 0.33,
+      "dimensionsCm": {
+        "width": 6.6,
+        "height": 15,
+        "depth": 6.6
+      },
+      "description": "Sockerfri energidryck med tropisk smak och koffein.",
+      "image": "https://npng-nutrition.ie/image/cache/catalog/nocco/carribbean-500x500.png",
+      "currency": "SEK",
+      "reorderPoint": 5,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "29",
+      "name": "Celsius Tropical Vibe",
+      "price": 29.9,
+      "stock": 20,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-CEL-029",
+      "weightKg": 0.355,
+      "dimensionsCm": {
+        "width": 6.6,
+        "height": 16,
+        "depth": 6.6
+      },
+      "description": "Sockerfri energidryck med tropisk smak.",
+      "image": "https://energydrinkcity.com/cdn/shop/files/celsius_tropical_vibe_Energydrinkcity.png?v=1744587091",
+      "currency": "SEK",
+      "reorderPoint": 5,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "30",
+      "name": "Powerking Original",
+      "price": 14.9,
+      "stock": 36,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-POW-030",
+      "weightKg": 0.25,
+      "dimensionsCm": {
+        "width": 6.5,
+        "height": 15,
+        "depth": 6.5
+      },
+      "description": "Prisvärd klassisk energidryck med koffein.",
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Powerking_energy_drink.jpg",
+      "currency": "SEK",
+      "reorderPoint": 9,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "31",
+      "name": "Kexchoklad",
+      "price": 15.9,
+      "stock": 40,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-KEX-031",
+      "weightKg": 0.06,
+      "dimensionsCm": {
+        "width": 12,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Klassisk chokladöverdragen rånkaka.",
+      "image": "https://cdn.s-cloud.fi/v1/w720h720%40_q75/assets/dam-id/7xsYYCfVq509unpNIrqZ_E.webp",
+      "currency": "SEK",
+      "reorderPoint": 10,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "32",
+      "name": "Marabou Mjölkchoklad",
+      "price": 29.9,
+      "stock": 28,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-MAR-032",
+      "weightKg": 0.2,
+      "dimensionsCm": {
+        "width": 18,
+        "height": 1,
+        "depth": 8
+      },
+      "description": "Mjuk mjölkchoklad i klassisk chokladkaka.",
+      "image": "https://buyersclub.blob.core.windows.net/images/items/1714688_0_1000x1000.jpg",
+      "currency": "SEK",
+      "reorderPoint": 7,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "33",
+      "name": "Ahlgrens Bilar",
+      "price": 24.9,
+      "stock": 32,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-AHL-033",
+      "weightKg": 0.125,
+      "dimensionsCm": {
+        "width": 16,
+        "height": 4,
+        "depth": 12
+      },
+      "description": "Mjuka skumbilar med fruktig smak.",
+      "image": "https://allswedishcandy.com/cdn/shop/files/MAL1014153.jpg?v=1776320388&width=1000",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "34",
+      "name": "Daim",
+      "price": 16.9,
+      "stock": 35,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-DAI-034",
+      "weightKg": 0.056,
+      "dimensionsCm": {
+        "width": 14,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Knaprig mandelkrokant täckt med mjölkchoklad.",
+      "image": "https://media.delitea.se/product-images/XL/marabou-daim-dubbel-56-g-0.jpg",
+      "currency": "SEK",
+      "reorderPoint": 9,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "35",
+      "name": "Plopp",
+      "price": 14.9,
+      "stock": 30,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-PLO-035",
+      "weightKg": 0.05,
+      "dimensionsCm": {
+        "width": 13,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Mjölkchoklad fylld med mjuk toffeefyllning.",
+      "image": "https://buyersclub.blob.core.windows.net/images/items/2157797_0_1000x1000.jpg",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "36",
+      "name": "Polly Original",
+      "price": 29.9,
+      "stock": 22,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-POL-036",
+      "weightKg": 0.2,
+      "dimensionsCm": {
+        "width": 18,
+        "height": 5,
+        "depth": 12
+      },
+      "description": "Mjuka skumtoppar täckta med choklad.",
+      "image": "https://swedishcandystore.com/cdn/shop/files/Cloetta-Polly-Original.webp?v=1739312548&width=1200",
+      "currency": "SEK",
+      "reorderPoint": 6,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "37",
+      "name": "Center",
+      "price": 24.9,
+      "stock": 26,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-CEN-037",
+      "weightKg": 0.078,
+      "dimensionsCm": {
+        "width": 15,
+        "height": 2,
+        "depth": 6
+      },
+      "description": "Mjölkchoklad med mjuk toffeefyllning.",
+      "image": "https://www.made-in-scandinavian.com/uploads/2/3/2/3/23232440/s328127075831127421_p13_i1_w500.jpeg",
+      "currency": "SEK",
+      "reorderPoint": 7,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "38",
+      "name": "Japp",
+      "price": 16.9,
+      "stock": 31,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-JAP-038",
+      "weightKg": 0.06,
+      "dimensionsCm": {
+        "width": 14,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Chokladbit med kola och mjuk fyllning.",
+      "image": "https://www.goodis.us/cdn/shop/files/JappChocolate.webp?v=1726831071&width=1200",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "39",
+      "name": "Twix",
+      "price": 17.9,
+      "stock": 29,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-TWI-039",
+      "weightKg": 0.05,
+      "dimensionsCm": {
+        "width": 13,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Kex med kola och mjölkchoklad.",
+      "image": "https://order.canteencanada.com/wp-content/uploads/2024/01/TWIX-BAR-50g.png",
+      "currency": "SEK",
+      "reorderPoint": 8,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
+    },
+    {
+      "id": "40",
+      "name": "Snickers",
+      "price": 17.9,
+      "stock": 27,
+      "category": "food",
+      "taxCategory": "food",
+      "sku": "MAT-SNI-040",
+      "weightKg": 0.05,
+      "dimensionsCm": {
+        "width": 13,
+        "height": 2,
+        "depth": 5
+      },
+      "description": "Chokladbit med jordnötter, kola och nougat.",
+      "image": "https://rimibaltic-res.cloudinary.com/image/upload/b_white,c_limit,dpr_auto,f_auto,q_auto:low,w_1000/d_ecommerce:backend-fallback.png/MAT_164252_PCE_EE",
+      "currency": "SEK",
+      "reorderPoint": 7,
+      "shippingInformation": "Skickas normalt inom 1-3 arbetsdagar",
+      "availabilityStatus": "In Stock"
     }
-  ]
+  ],
+  "inventory": [
+    {
+      "id": "inv-1",
+      "productId": "1",
+      "type": "delivery",
+      "quantity": 7,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-2",
+      "productId": "1",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-3",
+      "productId": "2",
+      "type": "delivery",
+      "quantity": 14,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-4",
+      "productId": "2",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-5",
+      "productId": "3",
+      "type": "delivery",
+      "quantity": 10,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-6",
+      "productId": "3",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-7",
+      "productId": "4",
+      "type": "delivery",
+      "quantity": 17,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-8",
+      "productId": "4",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-9",
+      "productId": "5",
+      "type": "delivery",
+      "quantity": 22,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-10",
+      "productId": "5",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-11",
+      "productId": "6",
+      "type": "delivery",
+      "quantity": 27,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-12",
+      "productId": "6",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-13",
+      "productId": "7",
+      "type": "delivery",
+      "quantity": 9,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-14",
+      "productId": "7",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-15",
+      "productId": "8",
+      "type": "delivery",
+      "quantity": 12,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-16",
+      "productId": "8",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-17",
+      "productId": "9",
+      "type": "delivery",
+      "quantity": 6,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-18",
+      "productId": "9",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-19",
+      "productId": "10",
+      "type": "delivery",
+      "quantity": 32,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-20",
+      "productId": "10",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-21",
+      "productId": "11",
+      "type": "delivery",
+      "quantity": 20,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-22",
+      "productId": "11",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-23",
+      "productId": "12",
+      "type": "delivery",
+      "quantity": 11,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-24",
+      "productId": "12",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-25",
+      "productId": "13",
+      "type": "delivery",
+      "quantity": 8,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-26",
+      "productId": "13",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-27",
+      "productId": "14",
+      "type": "delivery",
+      "quantity": 37,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-28",
+      "productId": "14",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-29",
+      "productId": "15",
+      "type": "delivery",
+      "quantity": 13,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-30",
+      "productId": "15",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-31",
+      "productId": "16",
+      "type": "delivery",
+      "quantity": 16,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-32",
+      "productId": "16",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-33",
+      "productId": "17",
+      "type": "delivery",
+      "quantity": 24,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-34",
+      "productId": "17",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-35",
+      "productId": "18",
+      "type": "delivery",
+      "quantity": 7,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-36",
+      "productId": "18",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-37",
+      "productId": "19",
+      "type": "delivery",
+      "quantity": 15,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-38",
+      "productId": "19",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-39",
+      "productId": "20",
+      "type": "delivery",
+      "quantity": 42,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-40",
+      "productId": "20",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-41",
+      "productId": "21",
+      "type": "delivery",
+      "quantity": 14,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-42",
+      "productId": "21",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-43",
+      "productId": "22",
+      "type": "delivery",
+      "quantity": 11,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-44",
+      "productId": "22",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-45",
+      "productId": "23",
+      "type": "delivery",
+      "quantity": 16,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-46",
+      "productId": "23",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-47",
+      "productId": "24",
+      "type": "delivery",
+      "quantity": 9,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-48",
+      "productId": "24",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-49",
+      "productId": "25",
+      "type": "delivery",
+      "quantity": 12,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-50",
+      "productId": "25",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-51",
+      "productId": "26",
+      "type": "delivery",
+      "quantity": 32,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-52",
+      "productId": "26",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-53",
+      "productId": "27",
+      "type": "delivery",
+      "quantity": 26,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-54",
+      "productId": "27",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-55",
+      "productId": "28",
+      "type": "delivery",
+      "quantity": 20,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-56",
+      "productId": "28",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-57",
+      "productId": "29",
+      "type": "delivery",
+      "quantity": 22,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-58",
+      "productId": "29",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-59",
+      "productId": "30",
+      "type": "delivery",
+      "quantity": 38,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-60",
+      "productId": "30",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-61",
+      "productId": "31",
+      "type": "delivery",
+      "quantity": 42,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-62",
+      "productId": "31",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-63",
+      "productId": "32",
+      "type": "delivery",
+      "quantity": 30,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-64",
+      "productId": "32",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-65",
+      "productId": "33",
+      "type": "delivery",
+      "quantity": 34,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-66",
+      "productId": "33",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-67",
+      "productId": "34",
+      "type": "delivery",
+      "quantity": 37,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-68",
+      "productId": "34",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-69",
+      "productId": "35",
+      "type": "delivery",
+      "quantity": 32,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-70",
+      "productId": "35",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-71",
+      "productId": "36",
+      "type": "delivery",
+      "quantity": 24,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-72",
+      "productId": "36",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-73",
+      "productId": "37",
+      "type": "delivery",
+      "quantity": 28,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-74",
+      "productId": "37",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-75",
+      "productId": "38",
+      "type": "delivery",
+      "quantity": 33,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-76",
+      "productId": "38",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-77",
+      "productId": "39",
+      "type": "delivery",
+      "quantity": 31,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-78",
+      "productId": "39",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-79",
+      "productId": "40",
+      "type": "delivery",
+      "quantity": 29,
+      "timestamp": "2026-08-25T09:00:00.000Z"
+    },
+    {
+      "id": "inv-80",
+      "productId": "40",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-08-31T14:00:00.000Z"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "camp-1",
+      "code": "SAVE10",
+      "type": "percentage",
+      "percentage": 10,
+      "active": true
+    },
+    {
+      "id": "camp-2",
+      "code": "SAVE100",
+      "type": "threshold",
+      "thresholdAmount": 1000,
+      "discountAmount": 100,
+      "active": true
+    },
+    {
+      "id": "camp-3",
+      "code": "BUY3PAY2",
+      "type": "buyXPayY",
+      "buyQuantity": 3,
+      "payQuantity": 2,
+      "active": true
+    }
+  ],
+  "carriers": [
+    {
+      "id": "carrier-1",
+      "name": "PostNord",
+      "pricingModel": "weight",
+      "basePrice": 49,
+      "pricePerKg": 12,
+      "zones": {
+        "SE": 1,
+        "EU": 1.5,
+        "WORLD": 2.5
+      },
+      "volumetricDivisor": 5000
+    },
+    {
+      "id": "carrier-2",
+      "name": "DHL",
+      "pricingModel": "zone",
+      "basePrice": 59,
+      "pricePerKg": 10,
+      "zones": {
+        "SE": 1,
+        "EU": 1.7,
+        "WORLD": 2.8
+      },
+      "volumetricDivisor": 5000
+    },
+    {
+      "id": "carrier-3",
+      "name": "Schenker",
+      "pricingModel": "volumetric",
+      "basePrice": 55,
+      "pricePerKg": 11,
+      "zones": {
+        "SE": 1,
+        "EU": 1.6,
+        "WORLD": 2.6
+      },
+      "volumetricDivisor": 5000
+    }
+  ],
+  "rates": [
+    {
+      "id": "rate-1",
+      "currency": "SEK",
+      "rateFromSEK": 1
+    },
+    {
+      "id": "rate-2",
+      "currency": "EUR",
+      "rateFromSEK": 0.089
+    },
+    {
+      "id": "rate-3",
+      "currency": "USD",
+      "rateFromSEK": 0.104
+    }
+  ],
+  "orders": [],
+  "points": []
 }

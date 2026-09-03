@@ -1,14 +1,155 @@
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .product-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    min-height: 180px;
     padding: 20px;
+
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.product-card-image {
+    width: 120px;
+    height: 120px;
+
+    object-fit: contain;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    background-color: #f3f4f6;
+}
+
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+
+.product-card h3 {
+    margin: 0 0 10px;
+}
+
+.product-price {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-stock {
+    margin: 0 0 15px;
+
+    color: #4b5563;
+}
+
+.add-to-cart-button {
+    margin-top: auto;
+
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #727374;
+    color: white;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #374151;
+}
+
+.add-to-cart-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+
+/* Navigation */
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    padding: 1rem;
+
+    background-color: #2f5695;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+
+    font-weight: 500;
+
+    transition: background-color 0.15s ease;
+}
+
+nav a:hover {
+    background-color: #374151;
+}
+
+.title {
+    text-align: center;
+}
+
+
+/* Mobil */
+
+@media (max-width: 750px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 500px) {
+    .product-card {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .product-card-image {
+        width: 90px;
+        height: 90px;
+    }
 }
