@@ -1486,6 +1486,22 @@
       "rateFromSEK": 0.104
     }
   ],
-  "orders": [],
-  "points": []
+  "orders": [
+    {
+      "email": "test@hotmail.com",
+      "lines": [
+        {
+          "productId": "1",
+          "name": "Laptop",
+          "unitPrice": 9999,
+          "quantity": 4
+        }
+      ],
+      "total": 39996,
+      "date": "2026-09-03T13:54:40.128Z",
+      "id": "RoOeVFt8hQM"
+    }
+  ],
+  "points": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

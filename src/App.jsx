@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Admin from "./pages/Admin";
 import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 function Nav() {
     const { lines } = useCart();
@@ -28,6 +30,8 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/products/:id" element={<ProductDetails />} />
                     <Route path="/admin" element={<Admin />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/order-confirmation" element={<OrderConfirmation />} />
                 </Routes>
             </BrowserRouter>
         </CartProvider>

@@ -28,8 +28,12 @@ export function CartProvider({ children }) {
         setLines(prev => prev.filter(l => l.productId !== productId));
     }
 
+    function clearCart() {
+        setLines([]);
+    }
+
     return (
-        <CartContext.Provider value={{ lines, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ lines, addToCart, removeFromCart, clearCart }}>
             {children}
         </CartContext.Provider>
     );
