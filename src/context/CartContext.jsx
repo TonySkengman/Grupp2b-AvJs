@@ -19,7 +19,8 @@ export function CartProvider({ children }) {
                 productId: product.id,
                 name: product.name,
                 unitPrice: product.price,
-                quantity: 1
+                quantity: 1,
+                image: product.image 
             }];
         });
     }
@@ -28,12 +29,22 @@ export function CartProvider({ children }) {
         setLines(prev => prev.filter(l => l.productId !== productId));
     }
 
+    function updateQuantity(productId, quantity) {
+    if (quantity <= 0) {
+        removeFromCart(productId);
+        return;
+    }
+    setLines(prev =>
+        prev.map(l => (l.productId === productId ? { ...l, quantity } : l))
+    );
+}
+
     function clearCart() {
         setLines([]);
     }
 
     return (
-        <CartContext.Provider value={{ lines, addToCart, removeFromCart, clearCart }}>
+        <CartContext.Provider value={{ lines, addToCart, removeFromCart, clearCart, updateQuantity }}>
             {children}
         </CartContext.Provider>
     );
