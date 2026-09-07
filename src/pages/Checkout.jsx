@@ -10,26 +10,33 @@ export default function Checkout() {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
-    const subtotal = lines.reduce((sum, l) => sum + l.unitPrice * l.quantity, 0);
+    const subtotal = lines.reduce(
+        (sum, line) => sum + line.unitPrice * line.quantity,
+        0
+    );
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    async function handleSubmit(event) {
+        event.preventDefault();
         setError(null);
 
         if (!email) {
             setError("Ange en e-postadress.");
             return;
         }
+
         if (lines.length === 0) {
             setError("Varukorgen är tom.");
             return;
         }
 
         setSubmitting(true);
+
         try {
             const response = await fetch("/api/orders", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({
                     email,
                     lines,
@@ -52,40 +59,85 @@ export default function Checkout() {
     }
 
     if (lines.length === 0) {
-        return <p>Din varukorg är tom — det finns inget att beställa.</p>;
+        return (
+            <div className="checkout-page">
+                <h1>Kassa</h1>
+                <p>Din varukorg är tom — det finns inget att beställa.</p>
+            </div>
+        );
     }
 
     return (
-        <div>
+        <div className="checkout-page">
             <h1>Kassa</h1>
 
-            <ul className="cart-line-list">
+            <div className="checkout-summary">
+                <strong>Summa: {subtotal} kr</strong>
+            </div>
+
+            <ul className="checkout-list">
                 {lines.map(line => (
-                    <li key={line.productId} className="cart-line">
+                    <li
+                        key={line.productId}
+                        className="checkout-line"
+                    >
                         {line.image && (
-                            <img src={line.image} alt={line.name} style={{ width: "60px" }} />
+                            <img
+                                src={line.image}
+                                alt={line.name}
+                            />
                         )}
-                        <span>{line.name} × {line.quantity} — {line.unitPrice * line.quantity} kr</span>
+
+                        <div className="checkout-line-info">
+                            <div className="checkout-line-name">
+                                {line.name}
+                            </div>
+
+                            <div className="checkout-line-price">
+                                {line.quantity} st × {line.unitPrice} kr
+                            </div>
+
+                            <div className="checkout-line-total">
+                                {line.unitPrice * line.quantity} kr
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
-            <p><strong>Summa: {subtotal} kr</strong></p>
 
-            <form onSubmit={handleSubmit}>
-                <label>
+            <form
+                className="checkout-form"
+                onSubmit={handleSubmit}
+            >
+                <label htmlFor="checkout-email">
                     E-postadress
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        required
-                    />
                 </label>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                <input
+                    id="checkout-email"
+                    type="email"
+                    value={email}
+                    onChange={event =>
+                        setEmail(event.target.value)
+                    }
+                    placeholder="namn@exempel.se"
+                    required
+                />
 
-                <button type="submit" disabled={submitting}>
-                    {submitting ? "Skickar..." : "Bekräfta beställning"}
+                {error && (
+                    <p className="checkout-error">
+                        {error}
+                    </p>
+                )}
+
+                <button
+                    type="submit"
+                    className="checkout-confirm-btn"
+                    disabled={submitting}
+                >
+                    {submitting
+                        ? "Skickar..."
+                        : "Bekräfta beställning"}
                 </button>
             </form>
         </div>
