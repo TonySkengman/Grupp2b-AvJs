@@ -59,10 +59,13 @@ export default function Checkout() {
         <div>
             <h1>Kassa</h1>
 
-            <ul>
+            <ul className="cart-line-list">
                 {lines.map(line => (
-                    <li key={line.productId}>
-                        {line.name} × {line.quantity} — {line.unitPrice * line.quantity} kr
+                    <li key={line.productId} className="cart-line">
+                        {line.image && (
+                            <img src={line.image} alt={line.name} style={{ width: "60px" }} />
+                        )}
+                        <span>{line.name} × {line.quantity} — {line.unitPrice * line.quantity} kr</span>
                     </li>
                 ))}
             </ul>
