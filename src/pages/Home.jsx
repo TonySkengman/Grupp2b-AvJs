@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
-import CategoryFilter from "../components/CategoryFilter";
 import ProductsList from "../components/ProductsLists";
+import CategoryFilter from "../components/CategoryFilter";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
 
+    async function getProducts() {
+        const response = await fetch("/api/products");
+        const result = await response.json();
+
+        if (response.ok) {
+            setProducts(result);
+            setFilteredProducts(result);
+        } else {
+            console.log("Fetching products failed!");
+        }
+    }
+
     useEffect(() => {
-        fetch("/api/products")
-            .then((response) => response.json())
-            .then((data) => {
-                setProducts(data);
-                setFilteredProducts(data);
-            });
+        getProducts();
     }, []);
 
     return (
-        <>
+        <div>
 
             <CategoryFilter
                 products={products}
@@ -24,6 +31,6 @@ export default function Home() {
             />
 
             <ProductsList products={filteredProducts} />
-        </>
+        </div>
     );
 }
