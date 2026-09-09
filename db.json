@@ -1405,29 +1405,50 @@
   ],
   "campaigns": [
     {
-      "id": "camp-1",
-      "code": "SAVE10",
-      "type": "percentage",
-      "percentage": 10,
+      "id": "c1",
+      "code": "SOMMAR20",
+      "type": "PERCENTAGE",
+      "value": 20,
       "active": true
     },
+
     {
-      "id": "camp-2",
-      "code": "SAVE100",
-      "type": "threshold",
-      "thresholdAmount": 1000,
+      "id": "c2",
+      "code": "FRI100",
+      "type": "THRESHOLD",
+      "threshold": 500,
       "discountAmount": 100,
       "active": true
     },
+
     {
-      "id": "camp-3",
-      "code": "BUY3PAY2",
-      "type": "buyXPayY",
-      "buyQuantity": 3,
-      "payQuantity": 2,
+      "id": "c3",
+      "code": "KOPBOK2",
+      "type": "BUY_X_PAY_Y",
+      "x": 2,
+      "y": 1,
+      "appliesToCategory": "böcker",
       "active": true
+    },
+
+    {
+      "id": "c4",
+      "code": "FRAKT79",
+      "type": "THRESHOLD",
+      "threshold": 1000,
+      "discountAmount": 79,
+      "active": true
+    },
+
+    {
+      "id": "c5",
+      "code": "GAMMAL",
+      "type": "PERCENTAGE",
+      "value": 50,
+      "active": false
     }
   ],
+
   "carriers": [
     {
       "id": "carrier-1",
@@ -1486,6 +1507,7 @@
       "rateFromSEK": 0.104
     }
   ],
+
   "orders": [
     {
       "email": "test@hotmail.com",
