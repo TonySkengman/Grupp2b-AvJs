@@ -1423,11 +1423,11 @@
 
     {
       "id": "c3",
-      "code": "KOPBOK2",
+      "code": "KOPBOK3",
       "type": "BUY_X_PAY_Y",
-      "x": 2,
-      "y": 1,
-      "appliesToCategory": "böcker",
+      "x": 3,
+      "y": 2,
+      "appliesToCategory": "books",
       "active": true
     },
 
