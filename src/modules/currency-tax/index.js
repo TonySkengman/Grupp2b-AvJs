@@ -5,17 +5,21 @@ export default class CurrencyModule {
 
     // Beskriver för React vilket formulärfält modulen behöver
     static descriptor = {
-        name: 'Valuta och moms',
-        fields: [
-            {
-                name: 'currency',
-                label: 'Välj valuta',
-                type: 'select',
-                required: true,
-                options: ['SEK', 'EUR', 'USD']
-            }
-        ]
-    };
+    name: 'Valuta och moms',
+    fields: [
+        {
+            name: 'currency',
+            label: 'Välj valuta',
+            type: 'select',
+            required: true,
+            options: [
+                { value: 'SEK', label: 'SEK' },
+                { value: 'EUR', label: 'EUR' },
+                { value: 'USD', label: 'USD' }
+            ]
+        }
+    ]
+};
 
     constructor() {
         // Denna klassen använder de andra två klasserna
