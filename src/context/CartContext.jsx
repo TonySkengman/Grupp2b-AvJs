@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import modules from "../modules/moduleMaker.js";
 
 const CartContext = createContext(null);
 
@@ -14,6 +15,10 @@ export function CartProvider({ children }) {
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(lines));
     }, [lines]);
+
+    const [campaignCodes, setCampaignCodes] = useState([]);
+    const [priceSpec, setPriceSpec] = useState(null);
+    const [priceError, setPriceError] = useState(null);
 
     function addToCart(product) {
         setLines(prev => {
@@ -39,7 +44,8 @@ export function CartProvider({ children }) {
                     name: product.name,
                     unitPrice: product.price,
                     quantity: 1,
-                    image: product.image
+                    image: product.image,
+                    category: product.category
                 }
             ];
         });
@@ -71,9 +77,49 @@ export function CartProvider({ children }) {
         );
     }
 
+    function addCampaignCode(code) {
+        const normalized = code.trim().toUpperCase();
+        setCampaignCodes(prev =>
+            prev.includes(normalized) ? prev : [...prev, normalized]
+        );
+    }
+
+    function removeCampaignCode(code) {
+        setCampaignCodes(prev => prev.filter(c => c !== code));
+    }
+
     function clearCart() {
         setLines([]);
+        setCampaignCodes([]);
     }
+
+    useEffect(() => {
+        if (lines.length === 0) {
+            setPriceSpec(null);
+            setPriceError(null);
+            return;
+        }
+
+        let cancelled = false;
+
+        modules.Campaign.run({ cart: lines, campaignCodes })
+            .then((result) => {
+                if (!cancelled) {
+                    setPriceSpec(result);
+                    setPriceError(null);
+                }
+            })
+            .catch((err) => {
+                if (!cancelled) {
+                    setPriceError(err.message);
+                    setPriceSpec(null);
+                }
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lines, campaignCodes]); 
 
     return (
         <CartContext.Provider
@@ -82,7 +128,12 @@ export function CartProvider({ children }) {
                 addToCart,
                 removeFromCart,
                 clearCart,
-                updateQuantity
+                updateQuantity,
+                campaignCodes,
+                addCampaignCode,
+                removeCampaignCode,
+                priceSpec,
+                priceError
             }}
         >
             {children}
