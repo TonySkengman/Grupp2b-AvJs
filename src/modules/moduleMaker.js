@@ -1,4 +1,4 @@
-import CampaignModule from "./Tony/index.js";
+import CampaignModule from "./campaign/index.js";
 import InventoryModule from "./inventory/index.js";
 import CurrencyModule from "./currency-tax/index.js";
 import ShippingModule from "./shipping/index.js";

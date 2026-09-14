@@ -2,7 +2,7 @@ import { useState } from "react";
 import GenericForm from "./GenericForm.jsx";
 import { useCart } from "../context/CartContext.jsx";
 import modules from "../modules/moduleMaker.js";
-import { UnknownCampaignCodeError } from "../modules/Tony/errors.js";
+import { UnknownCampaignCodeError } from "../modules/campaign/errors.js";
 
 
 export default function CampaignCodeInput() {
