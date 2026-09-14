@@ -6,7 +6,7 @@ import Discount from "./Discount.js";
 import PriceCalculator from "./PriceCalculator.js";
 import { InvalidCartError, UnknownCampaignCodeError, UnknownCampaignTypeError } from "./errors.js";
 
-// Kör med: node --test src/modules/campaign/campaign.test.js
+// Kör med: node --test src/modules/Tony/campaign.test.js
 // Allt synkront - testar Cart/Discount/PriceCalculator direkt, inte
 // run() (som skulle kräva ett mockat API-anrop mot /api/campaigns).
 

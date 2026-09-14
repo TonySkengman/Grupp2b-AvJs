@@ -16,7 +16,16 @@ export function CartProvider({ children }) {
         localStorage.setItem("cart", JSON.stringify(lines));
     }, [lines]);
 
-    const [campaignCodes, setCampaignCodes] = useState([]);
+
+    const [campaignCodes, setCampaignCodes] = useState(() => {
+    const savedCodes = localStorage.getItem("campaignCodes");
+    return savedCodes ? JSON.parse(savedCodes) : [];
+    });
+
+    useEffect(() => {
+    localStorage.setItem("campaignCodes", JSON.stringify(campaignCodes));
+    }, [campaignCodes]);
+
     const [priceSpec, setPriceSpec] = useState(null);
     const [priceError, setPriceError] = useState(null);
 
