@@ -3,17 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Checkout() {
-    const { lines, clearCart } = useCart();
+    const { lines, clearCart, priceSpec, priceError } = useCart();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
-    const subtotal = lines.reduce(
-        (sum, line) => sum + line.unitPrice * line.quantity,
-        0
-    );
+
+    const total = priceSpec ? priceSpec.total : 0;
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -40,7 +38,8 @@ export default function Checkout() {
                 body: JSON.stringify({
                     email,
                     lines,
-                    total: subtotal,
+                    total,
+                    discounts: priceSpec?.discounts ?? [],
                     date: new Date().toISOString()
                 })
             });
@@ -71,8 +70,20 @@ export default function Checkout() {
         <div className="checkout-page">
             <h1>Kassa</h1>
 
+            {priceError && <p className="checkout-error">{priceError}</p>}
+
             <div className="checkout-summary">
-                <strong>Summa: {subtotal} kr</strong>
+                <p>Delsumma: {priceSpec ? priceSpec.subtotal : 0} kr</p>
+
+                {priceSpec?.discounts.map((d, i) => (
+                    <p key={i} className="discount-row">
+                        {d.description}: <strong>-{d.amount} kr</strong>
+                    </p>
+                ))}
+
+                <p>
+                    <strong>Summa: {total} kr</strong> 
+                </p>
             </div>
 
             <ul className="checkout-list">

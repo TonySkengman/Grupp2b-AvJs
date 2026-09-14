@@ -6,6 +6,7 @@ import Admin from "./pages/Admin";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import Footer from "./components/Footer";
 
 function Nav() {
     const { lines } = useCart();
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/order-confirmation" element={<OrderConfirmation />} />
                 </Routes>
+                <Footer />
             </BrowserRouter>
         </CartProvider>
     );
