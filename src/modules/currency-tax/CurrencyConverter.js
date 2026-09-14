@@ -51,11 +51,15 @@ export default class CurrencyConverter {
             rates.set(item.currency, item.rateFromSEK);
         }
 
-        // Kontrollerar att alla valutor som US6 kräver finns
-        for (const currency of ['SEK', 'EUR', 'USD']) {
-            if (!rates.has(currency)) {
-                throw new Error(`Valutakurs saknas för: ${currency}`);
-            }
+        const requiredCurrencies = ['SEK', 'EUR', 'USD'];
+
+        // Arrow funktion för att kontrollera att alla nödvändiga valutor finns
+        const missingCurrency = requiredCurrencies.find(
+            currency => !rates.has(currency)
+        );
+
+        if (missingCurrency !== undefined) {
+            throw new Error(`Valutakurs saknas för: ${missingCurrency}`);
         }
 
         // SEK är basvalutan och ska alltid ha kursen 1
