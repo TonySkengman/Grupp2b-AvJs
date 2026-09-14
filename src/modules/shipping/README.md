@@ -6,7 +6,7 @@ Fraktmodulen räknar ut fraktofferter från flera transportörer utifrån vad so
 
 * index.js – modulens publika ingång. Tar emot formulärdata (destination) och varukorgen, bygger ett Parcel och ber ShippingQuoteService om offerter
 
-* Parcel – representerar hela varukorgen som ett paket. Räknar ut total vikt, volym och volymvikt (branschstandard för att stora men lätta paket ska kosta rätt
+* Parcel – representerar hela varukorgen som ett paket. Räknar ut total vikt, volym och volymvikt (branschstandard för att stora men lätta paket ska kosta rätt)
 
 * PricingStrategies – tre olika prismodeller (WeightBasedPricing, ZoneBasedPricing, VolumetricPricing), var och en med samma metod calculate(). Det gör att man kan lägga till nya prismodeller utan att ändra i Carrier
 
