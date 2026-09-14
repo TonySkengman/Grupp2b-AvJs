@@ -42,7 +42,7 @@ export default class Discount {
       const freeItemCount = groupCount * (this.campaign.x - this.campaign.y);
       if (freeItemCount === 0) return 0;
 
-      // De billigaste enheterna i kategorin blir gratis - störst möjliga rabatt åt kunden
+      // De billigaste enheterna i kategorin blir gratis
       const prices = itemsInCategory.map((item) => item.unitPrice);
       const cheapestPrice = Math.min(...prices);
       return freeItemCount * cheapestPrice;
