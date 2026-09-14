@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import modules from "../modules/moduleMaker.js";
 
 
 export default function Admin() {
@@ -6,17 +7,10 @@ export default function Admin() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    async function getProducts() {
+    async function getInventoryReport() {
         try {
-            const response = await fetch("/api/products");
-
-            if (!response.ok) {
-                throw new Error("Kunde inte hämta lagersaldot");
-            
-            }
-
-            const data = await response.json();
-            setProducts(data);
+            const report = await modules.Inventory.run({}, {});
+            setProducts(report);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -25,7 +19,7 @@ export default function Admin() {
     }
 
     useEffect(() => {
-        getProducts();
+        getInventoryReport();
     }, []);
 
     if (loading) {
@@ -56,12 +50,12 @@ export default function Admin() {
                         </thead>
                         <tbody>
                             {products.map((product) => (
-                                <tr key={product.id}>
+                                <tr key={product.productId}>
                                     <td>{product.name}</td>
                                     <td>{product.stock}</td>
                                     <td>{product.reorderPoint}</td>
                                     <td>
-                                        {product.stock <= 5 
+                                        {product.lowStock
                                         ? "Lågt lager"
                                         : "OK" }
                                     </td>
