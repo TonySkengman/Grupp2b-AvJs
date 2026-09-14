@@ -27,13 +27,25 @@ export default class StockMovement {
       );
     }
 
+    if (quantity === 0) {
+      throw new InvalidStockMovementError(
+        "Antalet måste vara större än 0."
+      );
+    }
+
+    // Adjustment får vara negativ eftersom den kan korrigera saldot nedåt.
+    if (type !== "adjustment" && quantity < 0) {
+      throw new InvalidStockMovementError(
+        "Antalet för inleverans och försäljning måste vara positivt."
+      );
+    }
+
     this.productId = String(productId);
     this.type = type;
     this.quantity = quantity;
     this.timestamp = timestamp;
   }
 
-  // räknar ut hur lagerhändelsen ska påverka saldot
   getQuantityChange() {
     switch (this.type) {
       case "delivery":

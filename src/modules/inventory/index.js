@@ -1,7 +1,8 @@
 import InventoryService from "./InventoryService.js";
 import {
   InventoryError,
-  InventoryApiError
+  InventoryApiError,
+  StockItemNotFoundError
 } from "./errors/InventoryError.js";
 
 // Publika ingången till lagermodulen.
@@ -51,21 +52,23 @@ export default class InventoryModule {
   };
 
   constructor() {
-    // Servicen innehåller modulens state:
-    // lagerhändelser och senaste rapport.
+    // Servicen sparar modulens state mellan anrop.
     this.service = new InventoryService();
   }
 
   async run(values = {}, context = {}) {
     await this.service.fetchMovements();
 
+    // Om produkter redan finns i context behöver vi inte hämta dem igen.
+    const products = Array.isArray(context.products)
+      ? context.products
+      : await this.fetchProducts();
+
     const hasMovement =
       values.productId !== undefined ||
       values.type !== undefined ||
       values.quantity !== undefined;
 
-    // Om vi får en lagerhändelse sparar vi den först.
-    // Utan värden skapar vi bara en aktuell rapport.
     if (hasMovement) {
       if (
         !values.productId ||
@@ -85,16 +88,22 @@ export default class InventoryModule {
         );
       }
 
+      const productExists = products.some(
+        product => String(product.id) === String(values.productId)
+      );
+
+      if (!productExists) {
+        throw new StockItemNotFoundError(
+          `Produkten med id ${values.productId} kunde inte hittas.`
+        );
+      }
+
       await this.service.saveMovement({
         productId: values.productId,
         type: values.type,
         quantity
       });
     }
-
-    const products = Array.isArray(context.products)
-      ? context.products
-      : await this.fetchProducts();
 
     return this.service.createReport(products);
   }

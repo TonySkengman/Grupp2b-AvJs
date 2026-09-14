@@ -1,5 +1,4 @@
-// Grundfel för lagerdelen.
-//Alla våra egna lagerfel bygger vidare på den här.
+// Alla lagerfel utgår från den här klassen.
 export class InventoryError extends Error {
   constructor(message) {
     super(message);
@@ -7,8 +6,7 @@ export class InventoryError extends Error {
   }
 }
 
-//Används när något är fel med lagerhändelse
-// t.ex fel typ eller ogiltigt antal.
+// Används vid ogiltig typ eller antal i en lagerhändelse.
 export class InvalidStockMovementError  extends InventoryError {
   constructor(message) {
     super(message);
@@ -16,19 +14,19 @@ export class InvalidStockMovementError  extends InventoryError {
   }
 }
 
-// Används om en produkt inte finns i lagret.
+// Används när en produkt saknas.
 export class StockItemNotFoundError extends InventoryError {
   constructor(message) {
     super(message);
     this.name = 'StockItemNotFoundError';
   }
-}   
+}
 
 
-// Används om något går fel när vi hämtar eller sparar lagerdata.
+// Används när lager-API:t inte går att nå eller svarar med fel.
 export class InventoryApiError extends InventoryError {
   constructor(message = "Det gick inte att kommunicera med lager-API:t") {
     super(message);
     this.name = 'InventoryApiError';
-    }
+  }
 }
