@@ -1688,6 +1688,27 @@
       "type": "sale",
       "quantity": 1,
       "timestamp": "2026-09-15T19:10:00.000Z"
+    },
+    {
+      "productId": "23",
+      "type": "sale",
+      "quantity": 8,
+      "timestamp": "2026-09-15T22:28:25.656Z",
+      "id": "Fs3UwXIfntE"
+    },
+    {
+      "productId": "1",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-15T22:28:25.676Z",
+      "id": "gLWmPyN0fLc"
+    },
+    {
+      "productId": "3",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-15T22:30:28.182Z",
+      "id": "w-rMuJmRiH8"
     }
   ],
   "campaigns": [
@@ -1698,7 +1719,6 @@
       "value": 20,
       "active": true
     },
-
     {
       "id": "c2",
       "code": "FRI100",
@@ -1707,7 +1727,6 @@
       "discountAmount": 100,
       "active": true
     },
-
     {
       "id": "c3",
       "code": "KOPBOK3",
@@ -1717,7 +1736,6 @@
       "appliesToCategory": "books",
       "active": true
     },
-
     {
       "id": "c4",
       "code": "FRAKT79",
@@ -1726,7 +1744,6 @@
       "discountAmount": 79,
       "active": true
     },
-
     {
       "id": "c5",
       "code": "GAMMAL",
@@ -1735,7 +1752,6 @@
       "active": false
     }
   ],
-
   "carriers": [
     {
       "id": "carrier-1",
@@ -1794,7 +1810,6 @@
       "rateFromSEK": 0.104
     }
   ],
-
   "orders": [
     {
       "email": "test@hotmail.com",
@@ -1831,6 +1846,108 @@
       "total": 69991,
       "date": "2026-09-04T15:16:38.985Z",
       "id": "XH0Sg96stNY"
+    },
+    {
+      "email": "test10@hotmail.com",
+      "lines": [
+        {
+          "productId": "23",
+          "name": "Eloquent JavaScript",
+          "unitPrice": 349,
+          "quantity": 8,
+          "image": "https://covers.openlibrary.org/b/isbn/9781593279509-L.jpg",
+          "category": "books",
+          "weightKg": 0.55,
+          "dimensionsCm": {
+            "width": 16,
+            "height": 3,
+            "depth": 23
+          },
+          "currency": "SEK",
+          "taxCategory": "books"
+        },
+        {
+          "productId": "1",
+          "name": "Laptop",
+          "unitPrice": 9999,
+          "quantity": 1,
+          "image": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/macbook-pro-14-inch-m5.png",
+          "category": "electronics",
+          "weightKg": 1.8,
+          "dimensionsCm": {
+            "width": 32,
+            "height": 2,
+            "depth": 22
+          },
+          "currency": "SEK",
+          "taxCategory": "standard"
+        }
+      ],
+      "total": 12525.28,
+      "currency": "SEK",
+      "formattedTotal": "12 525,28 SEK",
+      "discounts": [
+        {
+          "code": "FRAKT79",
+          "type": "THRESHOLD",
+          "amount": 79,
+          "description": "79 kr rabatt vid köp över 1000 kr (kod FRAKT79)"
+        },
+        {
+          "code": "SOMMAR20",
+          "type": "PERCENTAGE",
+          "amount": 2542.4,
+          "description": "20% rabatt (kod SOMMAR20)"
+        }
+      ],
+      "shipping": {
+        "carrierId": "carrier-1",
+        "name": "PostNord",
+        "price": 235,
+        "zone": "WORLD"
+      },
+      "date": "2026-09-15T22:28:25.625Z",
+      "id": "jLWFNlTAuAQ"
+    },
+    {
+      "email": "test11@hotmail.com",
+      "lines": [
+        {
+          "productId": "3",
+          "name": "Surfplatta",
+          "unitPrice": 3499,
+          "quantity": 2,
+          "image": "https://thumbs.wbm.im/pw/medium/9ac8d6b8b927839a8a41ec874529957a.png",
+          "category": "electronics",
+          "weightKg": 0.48,
+          "dimensionsCm": {
+            "width": 18,
+            "height": 0.7,
+            "depth": 25
+          },
+          "currency": "SEK",
+          "taxCategory": "standard"
+        }
+      ],
+      "total": 7063.56,
+      "currency": "SEK",
+      "formattedTotal": "7 063,56 SEK",
+      "discounts": [
+        {
+          "code": "SOMMAR20",
+          "type": "PERCENTAGE",
+          "amount": 1399.6,
+          "description": "20% rabatt (kod SOMMAR20)"
+        }
+      ],
+      "shipping": {
+        "carrierId": "carrier-3",
+        "name": "Schenker",
+        "price": 65.56,
+        "zone": "SE"
+      },
+      "date": "2026-09-15T22:30:28.158Z",
+      "id": "7u900vmu80I"
     }
   ],
   "points": [],

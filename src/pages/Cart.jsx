@@ -91,8 +91,11 @@ export default function Cart() {
 
                             <p>
                                 <strong>
-                                    Summa: {priceSpec ? priceSpec.total : 0} kr
+                                    Summa (exkl. moms): {priceSpec ? priceSpec.total : 0} kr
                                 </strong>
+                            </p>
+                            <p className="muted">
+                                Se "Valuta och moms" nedan för totalsumma inklusive moms.
                             </p>
 
                             <CurrencySelector />

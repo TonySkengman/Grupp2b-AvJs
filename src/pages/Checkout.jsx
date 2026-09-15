@@ -5,7 +5,7 @@ import modules from "../modules/moduleMaker.js";
 import ShippingEstimate from "../components/ShippingEstimate.jsx";
 
 export default function Checkout() {
-    const { lines, clearCart, priceSpec, priceError } = useCart();
+    const { lines, clearCart, priceSpec, priceError, currencyResult } = useCart();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -40,6 +40,11 @@ export default function Checkout() {
         }
 
         // Låset hindrar dubbelklick och ligger kvar om ordern redan sparats.
+        if (!currencyResult) {
+            setError("Priset har inte räknats ut ännu. Vänta ett ögonblick och försök igen.");
+            return;
+        }
+
         if (submitted.current) return;
         submitted.current = true;
 
@@ -54,7 +59,13 @@ export default function Checkout() {
                 body: JSON.stringify({
                     email,
                     lines,
-                    total: grandTotal,
+                    total: currencyResult.amount + shippingCost,
+                    currency: currencyResult.currency,
+                    formattedTotal: (currencyResult.amount + shippingCost).toLocaleString("sv-SE", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                    }) + " " + currencyResult.currency,
+                    taxAmount: currencyResult.taxAmount,
                     discounts: priceSpec?.discounts ?? [],
                     shipping: {
                         carrierId: shipping.carrierId,
@@ -71,8 +82,6 @@ export default function Checkout() {
             }
 
             orderSaved.current = true;
-
-            // En genomförd order registreras som sale i lagret.
 
             for (const line of lines) {
                 await modules.Inventory.run({
@@ -123,8 +132,29 @@ export default function Checkout() {
                 )}
 
                 <p>
-                    <strong>Summa: {grandTotal} kr</strong>
+                    <strong>Summa (exkl. moms):{" "}
+                            {grandTotal.toLocaleString("sv-SE", {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })}{" "}
+                            kr
+                    </strong>
                 </p>
+
+                {currencyResult ? (
+                    <p>
+                        <strong>
+                            Att betala (inkl. moms) ({currencyResult.currency}):{" "}
+                            {(currencyResult.amount + shippingCost).toLocaleString("sv-SE", {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })}{" "}
+                            {currencyResult.currency}
+                        </strong>
+                    </p>
+                ) : (
+                    <p className="muted">Räknar ut totalsumma inklusive moms...</p>
+                )}
             </div>
 
             <ul className="checkout-list">
@@ -187,7 +217,7 @@ export default function Checkout() {
                 <button
                     type="submit"
                     className="checkout-confirm-btn"
-                    disabled={submitting}
+                    disabled={submitting || !currencyResult}
                 >
                     {submitting
                         ? "Skickar..."

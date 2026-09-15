@@ -1,41 +1,9 @@
-import { useState } from "react";
 import { useCart } from "../context/CartContext.jsx";
 import modules from "../modules/moduleMaker.js";
 import GenericForm from "./GenericForm.jsx";
 
 export default function CurrencySelector() {
-    const { lines } = useCart();
-    const [result, setResult] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-
-    async function handleCurrencyChange(values) {
-        if (loading) {
-            return;
-        }
-
-        setLoading(true);
-        setError(null);
-
-        try {
-            const nextResult = await modules.Currency.run(
-                values,
-                { cartLines: lines }
-            );
-
-            setResult(nextResult);
-        } catch (err) {
-            setResult(null);
-            setError(
-                err instanceof Error
-                    ? err.message
-                    : "Kunde inte räkna om priset"
-            );
-        } finally {
-            setLoading(false);
-        }
-    }
+    const { currency, setCurrency, currencyResult, currencyError, currencyLoading } = useCart();
 
     return (
         <section className="currency-selector">
@@ -43,29 +11,27 @@ export default function CurrencySelector() {
 
             <GenericForm
                 fields={modules.CurrencyDescriptor.fields}
-                initialValues={{ currency: "" }}
-                submitLabel={loading ? "Beräknar..." : "Visa pris"}
-                onSubmit={handleCurrencyChange}
+                initialValues={{ currency }}
+                submitLabel="Byt valuta"
+                onSubmit={(values) => setCurrency(values.currency)}
             />
 
-            {loading && (
+            {currencyLoading && (
                 <p>Hämtar valutakurser och beräknar pris...</p>
             )}
 
-            {error && (
-                <p className="field-error">{error}</p>
+            {currencyError && (
+                <p className="field-error">{currencyError}</p>
             )}
 
-            {result && (
+            {currencyResult && (
                 <div className="currency-result">
                     <p>
-                        Vald valuta:{" "}
-                        <strong>{result.currency}</strong>
+                        Vald valuta: <strong>{currencyResult.currency}</strong>
                     </p>
-
                     <p>
                         Totalsumma inklusive moms:{" "}
-                        <strong>{result.formattedPrice}</strong>
+                        <strong>{currencyResult.formattedPrice}</strong>
                     </p>
                 </div>
             )}
