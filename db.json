@@ -1401,6 +1401,293 @@
       "type": "sale",
       "quantity": 2,
       "timestamp": "2026-08-31T14:00:00.000Z"
+    },
+    {
+      "id": "inv-demo-1",
+      "productId": "1",
+      "type": "delivery",
+      "quantity": 8,
+      "timestamp": "2026-09-09T08:15:00.000Z"
+    },
+    {
+      "id": "inv-demo-2",
+      "productId": "1",
+      "type": "sale",
+      "quantity": 3,
+      "timestamp": "2026-09-09T12:30:00.000Z"
+    },
+    {
+      "id": "inv-demo-3",
+      "productId": "1",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-11T15:45:00.000Z"
+    },
+    {
+      "id": "inv-demo-4",
+      "productId": "1",
+      "type": "sale",
+      "quantity": 3,
+      "timestamp": "2026-09-14T18:10:00.000Z"
+    },
+    {
+      "id": "inv-demo-5",
+      "productId": "1",
+      "type": "delivery",
+      "quantity": 6,
+      "timestamp": "2026-09-06T09:00:00.000Z"
+    },
+    {
+      "id": "inv-demo-6",
+      "productId": "1",
+      "type": "sale",
+      "quantity": 6,
+      "timestamp": "2026-09-06T14:00:00.000Z"
+    },
+    {
+      "id": "inv-demo-7",
+      "productId": "5",
+      "type": "delivery",
+      "quantity": 4,
+      "timestamp": "2026-09-09T09:20:00.000Z"
+    },
+    {
+      "id": "inv-demo-8",
+      "productId": "5",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-10T11:15:00.000Z"
+    },
+    {
+      "id": "inv-demo-9",
+      "productId": "5",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-12T16:40:00.000Z"
+    },
+    {
+      "id": "inv-demo-10",
+      "productId": "5",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-15T10:05:00.000Z"
+    },
+    {
+      "id": "inv-demo-11",
+      "productId": "9",
+      "type": "delivery",
+      "quantity": 7,
+      "timestamp": "2026-09-09T10:10:00.000Z"
+    },
+    {
+      "id": "inv-demo-12",
+      "productId": "9",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-09T17:25:00.000Z"
+    },
+    {
+      "id": "inv-demo-13",
+      "productId": "9",
+      "type": "sale",
+      "quantity": 3,
+      "timestamp": "2026-09-12T13:35:00.000Z"
+    },
+    {
+      "id": "inv-demo-14",
+      "productId": "9",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-15T15:50:00.000Z"
+    },
+    {
+      "id": "inv-demo-15",
+      "productId": "14",
+      "type": "delivery",
+      "quantity": 40,
+      "timestamp": "2026-09-09T07:45:00.000Z"
+    },
+    {
+      "id": "inv-demo-16",
+      "productId": "14",
+      "type": "sale",
+      "quantity": 12,
+      "timestamp": "2026-09-10T09:30:00.000Z"
+    },
+    {
+      "id": "inv-demo-17",
+      "productId": "14",
+      "type": "sale",
+      "quantity": 15,
+      "timestamp": "2026-09-12T14:20:00.000Z"
+    },
+    {
+      "id": "inv-demo-18",
+      "productId": "14",
+      "type": "sale",
+      "quantity": 13,
+      "timestamp": "2026-09-15T17:05:00.000Z"
+    },
+    {
+      "id": "inv-demo-19",
+      "productId": "18",
+      "type": "delivery",
+      "quantity": 6,
+      "timestamp": "2026-09-09T08:40:00.000Z"
+    },
+    {
+      "id": "inv-demo-20",
+      "productId": "18",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-10T12:00:00.000Z"
+    },
+    {
+      "id": "inv-demo-21",
+      "productId": "18",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-13T10:45:00.000Z"
+    },
+    {
+      "id": "inv-demo-22",
+      "productId": "18",
+      "type": "sale",
+      "quantity": 3,
+      "timestamp": "2026-09-15T16:15:00.000Z"
+    },
+    {
+      "id": "inv-demo-23",
+      "productId": "22",
+      "type": "delivery",
+      "quantity": 3,
+      "timestamp": "2026-09-09T11:05:00.000Z"
+    },
+    {
+      "id": "inv-demo-24",
+      "productId": "22",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-10T15:10:00.000Z"
+    },
+    {
+      "id": "inv-demo-25",
+      "productId": "22",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-12T09:55:00.000Z"
+    },
+    {
+      "id": "inv-demo-26",
+      "productId": "22",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-14T13:25:00.000Z"
+    },
+    {
+      "id": "inv-demo-27",
+      "productId": "27",
+      "type": "delivery",
+      "quantity": 5,
+      "timestamp": "2026-09-09T08:05:00.000Z"
+    },
+    {
+      "id": "inv-demo-28",
+      "productId": "27",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-11T10:35:00.000Z"
+    },
+    {
+      "id": "inv-demo-29",
+      "productId": "27",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-13T16:50:00.000Z"
+    },
+    {
+      "id": "inv-demo-30",
+      "productId": "27",
+      "type": "sale",
+      "quantity": 2,
+      "timestamp": "2026-09-15T11:40:00.000Z"
+    },
+    {
+      "id": "inv-demo-31",
+      "productId": "31",
+      "type": "delivery",
+      "quantity": 2,
+      "timestamp": "2026-09-09T13:15:00.000Z"
+    },
+    {
+      "id": "inv-demo-32",
+      "productId": "31",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-10T17:20:00.000Z"
+    },
+    {
+      "id": "inv-demo-33",
+      "productId": "31",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-14T08:50:00.000Z"
+    },
+    {
+      "id": "inv-demo-34",
+      "productId": "35",
+      "type": "delivery",
+      "quantity": 35,
+      "timestamp": "2026-09-09T09:45:00.000Z"
+    },
+    {
+      "id": "inv-demo-35",
+      "productId": "35",
+      "type": "sale",
+      "quantity": 10,
+      "timestamp": "2026-09-10T10:25:00.000Z"
+    },
+    {
+      "id": "inv-demo-36",
+      "productId": "35",
+      "type": "sale",
+      "quantity": 12,
+      "timestamp": "2026-09-12T18:00:00.000Z"
+    },
+    {
+      "id": "inv-demo-37",
+      "productId": "35",
+      "type": "sale",
+      "quantity": 13,
+      "timestamp": "2026-09-15T14:35:00.000Z"
+    },
+    {
+      "id": "inv-demo-38",
+      "productId": "40",
+      "type": "delivery",
+      "quantity": 3,
+      "timestamp": "2026-09-09T14:05:00.000Z"
+    },
+    {
+      "id": "inv-demo-39",
+      "productId": "40",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-11T12:45:00.000Z"
+    },
+    {
+      "id": "inv-demo-40",
+      "productId": "40",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-13T09:35:00.000Z"
+    },
+    {
+      "id": "inv-demo-41",
+      "productId": "40",
+      "type": "sale",
+      "quantity": 1,
+      "timestamp": "2026-09-15T19:10:00.000Z"
     }
   ],
   "campaigns": [
