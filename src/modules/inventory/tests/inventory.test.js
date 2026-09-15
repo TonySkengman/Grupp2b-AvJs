@@ -4,9 +4,12 @@ import assert from "node:assert/strict";
 import StockItem from "../StockItem.js";
 import StockMovement from "../StockMovement.js";
 import InventoryService from "../InventoryService.js";
+import InventoryModule from "../index.js";
 
 import {
-  InvalidStockMovementError
+  InventoryApiError,
+  InvalidStockMovementError,
+  StockItemNotFoundError
 } from "../errors/InventoryError.js";
 
 
@@ -48,6 +51,30 @@ test("adjustment kan minska lagersaldot", () => {
   assert.equal(
     movement.getQuantityChange(),
     -2
+  );
+});
+
+
+test("noll är inte en giltig lagerhändelse", () => {
+  assert.throws(
+    () => new StockMovement({
+      productId: "1",
+      type: "sale",
+      quantity: 0
+    }),
+    InvalidStockMovementError
+  );
+});
+
+
+test("negativ inleverans avvisas i stället för att vändas till positiv", () => {
+  assert.throws(
+    () => new StockMovement({
+      productId: "1",
+      type: "delivery",
+      quantity: -3
+    }),
+    InvalidStockMovementError
   );
 });
 
@@ -163,4 +190,133 @@ test("försäljningstakt kan höja beställningspunkten", () => {
     item.getEffectiveReorderPoint(7),
     14
   );
+});
+
+
+test("InventoryService beräknar försäljningstakt från aktuella sales", () => {
+  const service = new InventoryService();
+
+  service.movements = [
+    new StockMovement({
+      productId: "1",
+      type: "sale",
+      quantity: 14,
+      timestamp: new Date().toISOString()
+    })
+  ];
+
+  assert.equal(
+    service.getSalesRate("1", 7),
+    2
+  );
+});
+
+
+test("InventoryService räknar sålda varor för en period", () => {
+  const service = new InventoryService();
+
+  service.movements = [
+    new StockMovement({
+      productId: "1",
+      type: "sale",
+      quantity: 4,
+      timestamp: new Date().toISOString()
+    })
+  ];
+
+  assert.equal(service.getSoldQuantity("1", 7), 4);
+});
+
+
+test("modulen sparar inte en lagerhändelse för en okänd produkt", async () => {
+  const originalFetch = globalThis.fetch;
+  let postCount = 0;
+
+  globalThis.fetch = async (url, options = {}) => {
+    if (url === "/api/inventory" && !options.method) {
+      return { ok: true, json: async () => [] };
+    }
+
+    if (options.method === "POST") {
+      postCount += 1;
+    }
+
+    throw new Error(`Oväntat API-anrop: ${url}`);
+  };
+
+  try {
+    const module = new InventoryModule();
+
+    await assert.rejects(
+      module.run(
+        {
+          productId: "saknas",
+          type: "delivery",
+          quantity: "1"
+        },
+        { products: [] }
+      ),
+      StockItemNotFoundError
+    );
+
+    assert.equal(postCount, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("publika modulen kan konstrueras utan argument och skapa rapport", async () => {
+  const originalFetch = globalThis.fetch;
+
+  globalThis.fetch = async (url) => ({
+    ok: true,
+    json: async () => url === "/api/inventory"
+      ? []
+      : [{ id: "1", name: "Laptop", reorderPoint: 3 }]
+  });
+
+  try {
+    const module = new InventoryModule();
+    const resultPromise = module.run({}, {});
+
+    assert.ok(InventoryModule.descriptor);
+    assert.ok(resultPromise instanceof Promise);
+    assert.deepEqual(
+      await resultPromise,
+      [{
+        productId: "1",
+        name: "Laptop",
+        stock: 0,
+        reorderPoint: 3,
+        salesRate: 0,
+        soldLast7Days: 0,
+        recommendedPurchase: 3,
+        lowStock: true
+      }]
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("API-fel från lagerendpointen får rätt feltyp", async () => {
+  const originalFetch = globalThis.fetch;
+
+  globalThis.fetch = async () => ({
+    ok: false,
+    status: 500
+  });
+
+  try {
+    const module = new InventoryModule();
+
+    await assert.rejects(
+      module.run({}, {}),
+      InventoryApiError
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });

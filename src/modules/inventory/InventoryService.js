@@ -8,10 +8,8 @@ import {
 
 export default class InventoryService {
   constructor() {
-    // sparar lagerhändelserna så vi slipper hämta om allt hela tiden
+    // Sparar state mellan anrop.
     this.movements = [];
-
-    // sparar senaste rapporten vi gjort
     this.lastReport = null;
   }
 
@@ -27,7 +25,7 @@ export default class InventoryService {
 
       const data = await response.json();
 
-      // gör om datan från api till StockMovement objekt
+      // API-data blir objekt så samma lagerlogik används överallt.
       this.movements = data.map(
         movement => new StockMovement(movement)
       );
@@ -45,7 +43,7 @@ export default class InventoryService {
   }
 
   async saveMovement(movementData) {
-    // kollar först så lagerhändelsen är giltig
+    // Validera före API-anrop så ogiltig data inte kan sparas.
     const movement = new StockMovement(movementData);
 
     try {
@@ -73,7 +71,6 @@ export default class InventoryService {
       const stockMovement =
         new StockMovement(savedMovement);
 
-      // lägger även in den i listan vi redan har sparad
       this.movements.push(stockMovement);
 
       return stockMovement;
@@ -89,7 +86,6 @@ export default class InventoryService {
   }
 
   getMovementsForProduct(productId) {
-    // hämtar bara händelser för produkten vi vill kolla
     return this.movements.filter(
       movement =>
         movement.productId === String(productId)
@@ -100,7 +96,6 @@ export default class InventoryService {
     const productMovements =
       this.getMovementsForProduct(productId);
 
-    // räknar ihop alla lagerhändelser till ett saldo
     return productMovements.reduce(
       (total, movement) =>
         total + movement.getQuantityChange(),
@@ -109,36 +104,26 @@ export default class InventoryService {
   }
 
   getSalesRate(productId, days = 7) {
-    if (!Number.isFinite(days) || days <= 0) {
-      return 0;
-    }
+    if (!Number.isFinite(days) || days <= 0) return 0;
 
-    const now = Date.now();
+    return this.getSoldQuantity(productId, days) / days;
+  }
 
-    const startTime =
-      now - days * 24 * 60 * 60 * 1000;
+  getSoldQuantity(productId, days = 7) {
+    if (!Number.isFinite(days) || days <= 0) return 0;
 
-    // tar bara försäljningar inom perioden vi kollar på
-    const sales = this.getMovementsForProduct(
-      productId
-    ).filter(movement => {
-      const movementTime =
-        new Date(movement.timestamp).getTime();
+    const startTime = Date.now() - days * 24 * 60 * 60 * 1000;
 
-      return (
+    // Bara försäljningar i perioden används i statistiken.
+    return this.getMovementsForProduct(productId)
+      .filter(movement => (
         movement.type === "sale" &&
-        movementTime >= startTime
+        new Date(movement.timestamp).getTime() >= startTime
+      ))
+      .reduce(
+        (total, movement) => total + Math.abs(movement.quantity),
+        0
       );
-    });
-
-    const soldQuantity = sales.reduce(
-      (total, movement) =>
-        total + Math.abs(movement.quantity),
-      0
-    );
-
-    // snitt hur mycket som säljs per dag
-    return soldQuantity / days;
   }
 
   createStockItem(product) {
@@ -152,7 +137,6 @@ export default class InventoryService {
       product.id
     );
 
-    // bygger ett StockItem med produktens lagerregler
     return new StockItem({
       productId: product.id,
       name: product.name,
@@ -183,12 +167,14 @@ export default class InventoryService {
         name: product.name,
         stock: currentStock,
         reorderPoint,
+        salesRate: stockItem.salesRate,
+        soldLast7Days: this.getSoldQuantity(product.id, 7),
+        recommendedPurchase: Math.max(0, reorderPoint - currentStock),
         lowStock:
           stockItem.isLowStock(currentStock)
       };
     });
 
-    // sparar rapporten så vi kan använda den igen senare
     this.lastReport = report;
 
     return report;

@@ -15,7 +15,11 @@ export default class ShippingModule {
                 label: 'Destination',
                 type: 'select',
                 required: true,
-                options: ['SE', 'EU', 'WORLD']
+                options: [
+                    { value: 'SE', label: 'Sverige' },
+                    { value: 'EU', label: 'EU' },
+                    { value: 'WORLD', label: 'Övriga världen' }
+                ]
             }
         ]
     };

@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import modules from "../modules/moduleMaker.js";
+import ShippingEstimate from "../components/ShippingEstimate.jsx";
 
 export default function Checkout() {
-    const { lines, clearCart } = useCart();
+    const { lines, clearCart, priceSpec, priceError } = useCart();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const [shipping, setShipping] = useState(null);
+    const submitted = useRef(false);
+    const orderSaved = useRef(false);
 
-    const subtotal = lines.reduce(
-        (sum, line) => sum + line.unitPrice * line.quantity,
-        0
-    );
+
+    const subtotalAfterDiscounts = priceSpec ? priceSpec.total : 0;
+    const shippingCost = shipping ? shipping.price : 0;
+    const grandTotal = subtotalAfterDiscounts + shippingCost;
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -29,6 +34,15 @@ export default function Checkout() {
             return;
         }
 
+        if (!shipping) {
+            setError("Välj ett fraktalternativ.");
+            return;
+        }
+
+        // Låset hindrar dubbelklick och ligger kvar om ordern redan sparats.
+        if (submitted.current) return;
+        submitted.current = true;
+
         setSubmitting(true);
 
         try {
@@ -40,7 +54,14 @@ export default function Checkout() {
                 body: JSON.stringify({
                     email,
                     lines,
-                    total: subtotal,
+                    total: grandTotal,
+                    discounts: priceSpec?.discounts ?? [],
+                    shipping: {
+                        carrierId: shipping.carrierId,
+                        name: shipping.name,
+                        price: shipping.price,
+                        zone: shipping.zone
+                    },
                     date: new Date().toISOString()
                 })
             });
@@ -49,9 +70,22 @@ export default function Checkout() {
                 throw new Error("Kunde inte spara beställningen.");
             }
 
+            orderSaved.current = true;
+
+            // En genomförd order registreras som sale i lagret.
+
+            for (const line of lines) {
+                await modules.Inventory.run({
+                    productId: line.productId,
+                    type: "sale",
+                    quantity: line.quantity
+                }, {});
+            }
+
             clearCart();
             navigate("/order-confirmation");
         } catch (err) {
+            if (!orderSaved.current) submitted.current = false;
             setError(err.message);
         } finally {
             setSubmitting(false);
@@ -71,8 +105,26 @@ export default function Checkout() {
         <div className="checkout-page">
             <h1>Kassa</h1>
 
+            {priceError && <p className="checkout-error">{priceError}</p>}
+
             <div className="checkout-summary">
-                <strong>Summa: {subtotal} kr</strong>
+                <p>Delsumma: {priceSpec ? priceSpec.subtotal : 0} kr</p>
+
+                {priceSpec?.discounts.map((d, i) => (
+                    <p key={i} className="discount-row">
+                        {d.description}: <strong>-{d.amount} kr</strong>
+                    </p>
+                ))}
+
+                {shipping && (
+                    <p className="shipping-row">
+                        Frakt ({shipping.name}): <strong>{shipping.price} kr</strong>
+                    </p>
+                )}
+
+                <p>
+                    <strong>Summa: {grandTotal} kr</strong>
+                </p>
             </div>
 
             <ul className="checkout-list">
@@ -104,6 +156,8 @@ export default function Checkout() {
                     </li>
                 ))}
             </ul>
+
+            <ShippingEstimate onQuoteSelected={setShipping} />
 
             <form
                 className="checkout-form"

@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import CampaignCodeInput from "../components/CampaignCodeInput.jsx";
+import CurrencySelector from "../components/CurrencySelector.jsx";
 
 export default function Cart() {
-    const { lines, removeFromCart, updateQuantity } = useCart();
-
-    const subtotal = lines.reduce(
-        (sum, line) => sum + line.unitPrice * line.quantity,
-        0
-    );
+    const { lines, removeFromCart, updateQuantity, priceSpec, priceError } = useCart();
 
     return (
         <div className="cart-page">
@@ -17,18 +14,6 @@ export default function Cart() {
                 <p>Du har inte lagt till några produkter än.</p>
             ) : (
                 <>
-                    <div className="cart-summary">
-                        <p>
-                            <strong>Summa: {subtotal} kr</strong>
-                        </p>
-
-                        <Link to="/checkout">
-                            <button className="checkout-btn">
-                                Gå till kassan
-                            </button>
-                        </Link>
-                    </div>
-
                     <ul className="cart-line-list">
                         {lines.map(line => (
                             <li
@@ -89,6 +74,36 @@ export default function Cart() {
                             </li>
                         ))}
                     </ul>
+
+                    <CampaignCodeInput />
+
+                    {priceError && <p className="field-error">{priceError}</p>}
+
+                    <div className="cart-summary">
+                        <div className="price-details">
+                            <p>Delsumma: {priceSpec ? priceSpec.subtotal : 0} kr</p>
+
+                            {priceSpec?.discounts.map((d, i) => (
+                                <p key={i} className="discount-row">
+                                    {d.description}: <strong>-{d.amount} kr</strong>
+                                </p>
+                            ))}
+
+                            <p>
+                                <strong>
+                                    Summa: {priceSpec ? priceSpec.total : 0} kr
+                                </strong>
+                            </p>
+
+                            <CurrencySelector />
+                        </div>
+
+                        <Link to="/checkout">
+                            <button className="checkout-btn">
+                                Gå till kassan
+                            </button>
+                        </Link>
+                    </div>
                 </>
             )}
         </div>
