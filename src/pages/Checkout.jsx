@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import modules from "../modules/moduleMaker.js";
 
 export default function Checkout() {
     const { lines, clearCart, priceSpec, priceError } = useCart();
@@ -9,6 +10,8 @@ export default function Checkout() {
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const submitted = useRef(false);
+    const orderSaved = useRef(false);
 
 
     const total = priceSpec ? priceSpec.total : 0;
@@ -26,6 +29,10 @@ export default function Checkout() {
             setError("Varukorgen är tom.");
             return;
         }
+
+        // Låset hindrar dubbelklick och ligger kvar om ordern redan sparats.
+        if (submitted.current) return;
+        submitted.current = true;
 
         setSubmitting(true);
 
@@ -48,9 +55,21 @@ export default function Checkout() {
                 throw new Error("Kunde inte spara beställningen.");
             }
 
+            orderSaved.current = true;
+
+            // En genomförd order registreras som sale i lagret.
+            for (const line of lines) {
+                await modules.Inventory.run({
+                    productId: line.productId,
+                    type: "sale",
+                    quantity: line.quantity
+                }, {});
+            }
+
             clearCart();
             navigate("/order-confirmation");
         } catch (err) {
+            if (!orderSaved.current) submitted.current = false;
             setError(err.message);
         } finally {
             setSubmitting(false);
