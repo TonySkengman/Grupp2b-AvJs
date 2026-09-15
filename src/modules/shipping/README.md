@@ -1,6 +1,6 @@
 - Modulens syfte - 
 
-Fraktmodulen räknar ut fraktofferter från flera transportörer utifrån vad som ligger i varukorgen och vilken destination kunden väljer. Den är byggd som en fristående modul (shipping) som ännu inte är kopplad till resten av projektet. I dagsläget går den att köra och testa isolerat.
+Fraktmodulen räknar ut fraktofferter från flera transportörer utifrån vad som ligger i varukorgen och vilken destination kunden väljer. Den är byggd som en fristående modul (shipping) och går att testa i terminalen. Modulen är integrerad i projektets checkout-del där den genom ShippingEstimate räknar ut och presenterar frakt.
 
 - Uppbygnad -
 

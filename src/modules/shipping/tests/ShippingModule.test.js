@@ -14,7 +14,7 @@ async function runTests() {
         ];
 
         const quotes = await shippingModule.run({ destinationZone: 'SE' }, { cartLines });
-        console.log('run() offerter (förväntat price 60 för PostNord):', quotes);
+        console.log('run() offerter (DHL 52, PostNord 60):', quotes);
 
     } catch (error) {
         console.error('Test misslyckades (ShippingModule grundfall):', error.message);

@@ -2,10 +2,10 @@
 // Varje fil skriver ut sina egna resultat och felmeddelanden.
 
 console.log('--- Parcel ---');
-await import('./Parcel.Test.js');
+await import('./Parcel.test.js');
 
 console.log('\n--- PricingStrategies ---');
-await import('./PricingStrategies.Test.js');
+await import('./PricingStrategies.test.js');
 
 console.log('\n--- Carrier ---');
 await import('./Carrier.test.js');
