@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import modules from "../modules/moduleMaker.js";
+import ShippingEstimate from "../components/ShippingEstimate.jsx";
 
 export default function Checkout() {
     const { lines, clearCart, priceSpec, priceError } = useCart();
@@ -10,11 +11,14 @@ export default function Checkout() {
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const [shipping, setShipping] = useState(null);
     const submitted = useRef(false);
     const orderSaved = useRef(false);
 
 
-    const total = priceSpec ? priceSpec.total : 0;
+    const subtotalAfterDiscounts = priceSpec ? priceSpec.total : 0;
+    const shippingCost = shipping ? shipping.price : 0;
+    const grandTotal = subtotalAfterDiscounts + shippingCost;
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -27,6 +31,11 @@ export default function Checkout() {
 
         if (lines.length === 0) {
             setError("Varukorgen är tom.");
+            return;
+        }
+
+        if (!shipping) {
+            setError("Välj ett fraktalternativ.");
             return;
         }
 
@@ -45,8 +54,14 @@ export default function Checkout() {
                 body: JSON.stringify({
                     email,
                     lines,
-                    total,
+                    total: grandTotal,
                     discounts: priceSpec?.discounts ?? [],
+                    shipping: {
+                        carrierId: shipping.carrierId,
+                        name: shipping.name,
+                        price: shipping.price,
+                        zone: shipping.zone
+                    },
                     date: new Date().toISOString()
                 })
             });
@@ -58,6 +73,7 @@ export default function Checkout() {
             orderSaved.current = true;
 
             // En genomförd order registreras som sale i lagret.
+
             for (const line of lines) {
                 await modules.Inventory.run({
                     productId: line.productId,
@@ -100,8 +116,14 @@ export default function Checkout() {
                     </p>
                 ))}
 
+                {shipping && (
+                    <p className="shipping-row">
+                        Frakt ({shipping.name}): <strong>{shipping.price} kr</strong>
+                    </p>
+                )}
+
                 <p>
-                    <strong>Summa: {total} kr</strong> 
+                    <strong>Summa: {grandTotal} kr</strong>
                 </p>
             </div>
 
@@ -134,6 +156,8 @@ export default function Checkout() {
                     </li>
                 ))}
             </ul>
+
+            <ShippingEstimate onQuoteSelected={setShipping} />
 
             <form
                 className="checkout-form"
