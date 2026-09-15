@@ -104,35 +104,26 @@ export default class InventoryService {
   }
 
   getSalesRate(productId, days = 7) {
-    if (!Number.isFinite(days) || days <= 0) {
-      return 0;
-    }
+    if (!Number.isFinite(days) || days <= 0) return 0;
 
-    const now = Date.now();
+    return this.getSoldQuantity(productId, days) / days;
+  }
 
-    const startTime =
-      now - days * 24 * 60 * 60 * 1000;
+  getSoldQuantity(productId, days = 7) {
+    if (!Number.isFinite(days) || days <= 0) return 0;
 
-    // Bara färska sales ska påverka beställningspunkten.
-    const sales = this.getMovementsForProduct(
-      productId
-    ).filter(movement => {
-      const movementTime =
-        new Date(movement.timestamp).getTime();
+    const startTime = Date.now() - days * 24 * 60 * 60 * 1000;
 
-      return (
+    // Bara försäljningar i perioden används i statistiken.
+    return this.getMovementsForProduct(productId)
+      .filter(movement => (
         movement.type === "sale" &&
-        movementTime >= startTime
+        new Date(movement.timestamp).getTime() >= startTime
+      ))
+      .reduce(
+        (total, movement) => total + Math.abs(movement.quantity),
+        0
       );
-    });
-
-    const soldQuantity = sales.reduce(
-      (total, movement) =>
-        total + Math.abs(movement.quantity),
-      0
-    );
-
-    return soldQuantity / days;
   }
 
   createStockItem(product) {
@@ -176,6 +167,9 @@ export default class InventoryService {
         name: product.name,
         stock: currentStock,
         reorderPoint,
+        salesRate: stockItem.salesRate,
+        soldLast7Days: this.getSoldQuantity(product.id, 7),
+        recommendedPurchase: Math.max(0, reorderPoint - currentStock),
         lowStock:
           stockItem.isLowStock(currentStock)
       };

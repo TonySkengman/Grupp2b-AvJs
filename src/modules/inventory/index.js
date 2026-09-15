@@ -27,7 +27,7 @@ export default class InventoryModule {
       {
         name: "productId",
         label: "Produkt-id",
-        type: "number",
+        type: "select",
         required: true,
         min: 1
       },

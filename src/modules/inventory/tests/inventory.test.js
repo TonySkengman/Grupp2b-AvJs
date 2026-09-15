@@ -212,6 +212,22 @@ test("InventoryService beräknar försäljningstakt från aktuella sales", () =>
 });
 
 
+test("InventoryService räknar sålda varor för en period", () => {
+  const service = new InventoryService();
+
+  service.movements = [
+    new StockMovement({
+      productId: "1",
+      type: "sale",
+      quantity: 4,
+      timestamp: new Date().toISOString()
+    })
+  ];
+
+  assert.equal(service.getSoldQuantity("1", 7), 4);
+});
+
+
 test("modulen sparar inte en lagerhändelse för en okänd produkt", async () => {
   const originalFetch = globalThis.fetch;
   let postCount = 0;
@@ -273,6 +289,9 @@ test("publika modulen kan konstrueras utan argument och skapa rapport", async ()
         name: "Laptop",
         stock: 0,
         reorderPoint: 3,
+        salesRate: 0,
+        soldLast7Days: 0,
+        recommendedPurchase: 3,
         lowStock: true
       }]
     );
