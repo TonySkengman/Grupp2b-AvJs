@@ -33,12 +33,12 @@ export function CartProvider({ children }) {
 
 
     const [campaignCodes, setCampaignCodes] = useState(() => {
-    const savedCodes = localStorage.getItem("campaignCodes");
-    return savedCodes ? JSON.parse(savedCodes) : [];
+        const savedCodes = localStorage.getItem("campaignCodes");
+        return savedCodes ? JSON.parse(savedCodes) : [];
     });
 
     useEffect(() => {
-    localStorage.setItem("campaignCodes", JSON.stringify(campaignCodes));
+        localStorage.setItem("campaignCodes", JSON.stringify(campaignCodes));
     }, [campaignCodes]);
 
     const [priceSpec, setPriceSpec] = useState(null);
@@ -70,6 +70,8 @@ export function CartProvider({ children }) {
                     quantity: 1,
                     image: product.image,
                     category: product.category,
+                    weightKg: product.weightKg,
+                    dimensionsCm: product.dimensionsCm,
                     currency: product.currency,
                     taxCategory: product.taxCategory
                 }
@@ -145,7 +147,7 @@ export function CartProvider({ children }) {
         return () => {
             cancelled = true;
         };
-    }, [lines, campaignCodes]); 
+    }, [lines, campaignCodes]);
 
     return (
         <CartContext.Provider
