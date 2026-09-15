@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import CampaignCodeInput from "../components/CampaignCodeInput.jsx";
+import CurrencySelector from "../components/CurrencySelector.jsx";
 
 export default function Cart() {
     const { lines, removeFromCart, updateQuantity, priceSpec, priceError } = useCart();
@@ -93,6 +94,8 @@ export default function Cart() {
                                     Summa: {priceSpec ? priceSpec.total : 0} kr
                                 </strong>
                             </p>
+
+                            <CurrencySelector />
                         </div>
 
                         <Link to="/checkout">

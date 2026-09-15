@@ -7,9 +7,24 @@ export function CartProvider({ children }) {
     const [lines, setLines] = useState(() => {
         const savedCart = localStorage.getItem("cart");
 
-        return savedCart
-            ? JSON.parse(savedCart)
-            : [];
+        if (!savedCart) {
+            return [];
+        }
+
+        try {
+            const parsedCart = JSON.parse(savedCart);
+
+            if (!Array.isArray(parsedCart)) {
+                return [];
+            }
+
+            return parsedCart.filter(line =>
+                typeof line?.currency === "string" &&
+                typeof line?.taxCategory === "string"
+            );
+        } catch {
+            return [];
+        }
     });
 
     useEffect(() => {
@@ -54,7 +69,9 @@ export function CartProvider({ children }) {
                     unitPrice: product.price,
                     quantity: 1,
                     image: product.image,
-                    category: product.category
+                    category: product.category,
+                    currency: product.currency,
+                    taxCategory: product.taxCategory
                 }
             ];
         });
