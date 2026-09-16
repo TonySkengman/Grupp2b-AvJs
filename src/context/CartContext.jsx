@@ -6,31 +6,12 @@ const CartContext = createContext(null);
 export function CartProvider({ children }) {
     const [lines, setLines] = useState(() => {
         const savedCart = localStorage.getItem("cart");
-
-        if (!savedCart) {
-            return [];
-        }
-
-        try {
-            const parsedCart = JSON.parse(savedCart);
-
-            if (!Array.isArray(parsedCart)) {
-                return [];
-            }
-
-            return parsedCart.filter(line =>
-                typeof line?.currency === "string" &&
-                typeof line?.taxCategory === "string"
-            );
-        } catch {
-            return [];
-        }
+        return savedCart ? JSON.parse(savedCart) : [];
     });
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(lines));
     }, [lines]);
-
 
     const [campaignCodes, setCampaignCodes] = useState(() => {
         const savedCodes = localStorage.getItem("campaignCodes");
@@ -43,6 +24,11 @@ export function CartProvider({ children }) {
 
     const [priceSpec, setPriceSpec] = useState(null);
     const [priceError, setPriceError] = useState(null);
+
+    const [currency, setCurrency] = useState("SEK");
+    const [currencyResult, setCurrencyResult] = useState(null);
+    const [currencyError, setCurrencyError] = useState(null);
+    const [currencyLoading, setCurrencyLoading] = useState(false);
 
     function addToCart(product) {
         setLines(prev => {
@@ -73,7 +59,7 @@ export function CartProvider({ children }) {
                     weightKg: product.weightKg,
                     dimensionsCm: product.dimensionsCm,
                     currency: product.currency,
-                    taxCategory: product.taxCategory
+                    taxCategory: product.taxCategory,
                 }
             ];
         });
@@ -149,6 +135,56 @@ export function CartProvider({ children }) {
         };
     }, [lines, campaignCodes]);
 
+    const discountRatio =
+        priceSpec && priceSpec.subtotal > 0
+            ? priceSpec.total / priceSpec.subtotal
+            : 1;
+
+    const discountedLines = lines.map((line) => ({
+        ...line,
+        unitPrice: Math.round(line.unitPrice * discountRatio * 100) / 100,
+    }));
+
+    useEffect(() => {
+        if (discountedLines.length === 0) {
+            setCurrencyResult(null);
+            setCurrencyError(null);
+            return;
+        }
+
+        let cancelled = false;
+        setCurrencyLoading(true);
+
+        modules.Currency.run(
+            { currency },
+            { cartLines: discountedLines }
+        )
+            .then((result) => {
+                if (!cancelled) {
+                    setCurrencyResult(result);
+                    setCurrencyError(null);
+                }
+            })
+            .catch((err) => {
+                if (!cancelled) {
+                    setCurrencyError(
+                        err instanceof Error ? err.message : "Kunde inte räkna om priset"
+                    );
+                    setCurrencyResult(null);
+                }
+            })
+            .finally(() => {
+                if (!cancelled) {
+                    setCurrencyLoading(false);
+                }
+            });
+
+        return () => {
+            cancelled = true;
+        };
+
+    }, [JSON.stringify(discountedLines), currency]);
+
     return (
         <CartContext.Provider
             value={{
@@ -161,7 +197,13 @@ export function CartProvider({ children }) {
                 addCampaignCode,
                 removeCampaignCode,
                 priceSpec,
-                priceError
+                priceError,
+                discountedLines,
+                currency,
+                setCurrency,
+                currencyResult,
+                currencyError,
+                currencyLoading,
             }}
         >
             {children}
