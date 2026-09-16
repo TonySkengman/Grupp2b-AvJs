@@ -1,18 +1,13 @@
 import { useState } from "react";
 
-/**
- * GenericForm renderar ett formulär utifrån EN modul-descriptors
- * `fields`-lista - den känner inte till om det är Kampanjmotorns,
- * Fraktmodulens eller Valutamodulens fält. Den validerar `required` och
- * `pattern` innan `onSubmit` anropas, precis som modulkontraktet
- * beskriver ("Formulärgeneratorn validerar mot descriptorn... innan run
- * anropas").
- *
- * @param {{name,label,type,required,pattern,patternHint,helpText,options,visibleWhen}[]} fields
- * @param {object} initialValues
- * @param {(values: object) => void} onSubmit
- */
-export default function GenericForm({ fields, initialValues = {}, onSubmit, submitLabel = "Skicka", context = {} }) {
+export default function GenericForm({
+  fields,
+  initialValues = {},
+  onSubmit,
+  submitLabel = "Skicka",
+  context = {},
+  autoSubmit = false, 
+}) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
 
@@ -39,6 +34,13 @@ export default function GenericForm({ fields, initialValues = {}, onSubmit, subm
   const handleChange = (field, value) => {
     setValues((v) => ({ ...v, [field.name]: value }));
     setErrors((e) => ({ ...e, [field.name]: null }));
+
+    if (autoSubmit) {
+      const err = validateField(field, value);
+      if (!err) {
+        onSubmit({ ...values, [field.name]: value });
+      }
+    }
   };
 
   const handleSubmit = (e) => {
@@ -89,7 +91,7 @@ export default function GenericForm({ fields, initialValues = {}, onSubmit, subm
           {errors[field.name] && <p className="field-error">{errors[field.name]}</p>}
         </div>
       ))}
-      <button type="submit">{submitLabel}</button>
+      {!autoSubmit && <button type="submit">{submitLabel}</button>}
     </form>
   );
 }

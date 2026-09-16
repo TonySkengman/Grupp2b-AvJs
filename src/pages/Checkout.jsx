@@ -1,3 +1,4 @@
+
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
@@ -123,6 +124,38 @@ export default function Checkout() {
 
             {priceError && <p className="checkout-error">{priceError}</p>}
 
+            <ul className="checkout-list">
+                {lines.map(line => (
+                    <li
+                        key={line.productId}
+                        className="checkout-line"
+                    >
+                        {line.image && (
+                            <img
+                                src={line.image}
+                                alt={line.name}
+                            />
+                        )}
+
+                        <div className="checkout-line-info">
+                            <div className="checkout-line-name">
+                                {line.name}
+                            </div>
+
+                            <div className="checkout-line-price">
+                                {line.quantity} st × {line.unitPrice} kr
+                            </div>
+
+                            <div className="checkout-line-total">
+                                {line.unitPrice * line.quantity} kr
+                            </div>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+
+            <ShippingEstimate onQuoteSelected={setShipping} />
+
             <div className="checkout-summary">
                 <p>Delsumma: {priceSpec ? priceSpec.subtotal : 0} kr</p>
 
@@ -160,41 +193,11 @@ export default function Checkout() {
                         </strong>
                     </p>
                 ) : (
-                    <p className="muted">Räknar ut totalsumma inklusive moms...</p>
+                    <p className="muted">
+                        Räknar ut totalsumma inklusive moms...
+                    </p>
                 )}
             </div>
-
-            <ul className="checkout-list">
-                {lines.map(line => (
-                    <li
-                        key={line.productId}
-                        className="checkout-line"
-                    >
-                        {line.image && (
-                            <img
-                                src={line.image}
-                                alt={line.name}
-                            />
-                        )}
-
-                        <div className="checkout-line-info">
-                            <div className="checkout-line-name">
-                                {line.name}
-                            </div>
-
-                            <div className="checkout-line-price">
-                                {line.quantity} st × {line.unitPrice} kr
-                            </div>
-
-                            <div className="checkout-line-total">
-                                {line.unitPrice * line.quantity} kr
-                            </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-
-            <ShippingEstimate onQuoteSelected={setShipping} />
 
             <form
                 className="checkout-form"
