@@ -60,6 +60,7 @@ export default function ShippingEstimate({ onQuoteSelected }) {
 
     return (
         <div className="shipping-estimate">
+            <h2>Fraktalternativ</h2>
             <GenericForm
                 fields={modules.ShippingDescriptor.fields}
                 initialValues={{ destinationZone: "" }}
@@ -67,7 +68,7 @@ export default function ShippingEstimate({ onQuoteSelected }) {
                 onSubmit={handleSubmit}
             />
 
-            {loading && <p>Beräknar frakt...</p>}
+            {loading && <p className="shipping-estimate-message">Beräknar frakt...</p>}
             {error && <p className="field-error">{error}</p>}
 
             {quotes && (

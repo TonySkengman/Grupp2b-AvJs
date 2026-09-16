@@ -21,32 +21,44 @@ export default function ProductDetails() {
         getProduct();
     }, [id]);
 
-    if (loading) return <p>Laddar...</p>;
-    if (!product) return <p>Produkten hittades inte.</p>;
+    if (loading) return <p className="page-status">Laddar...</p>;
+    if (!product) return <p className="page-status">Produkten hittades inte.</p>;
 
     const inCart = lines.find(l => l.productId === product.id)?.quantity ?? 0;
     const available = product.stock - inCart;
 
     return (
-        <div>
-            <Link to="/">← Tillbaka</Link>
-            <h1>{product.name}</h1>
-            {product.image && (
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    style={{ maxWidth: "400px", width: "100%" }}
-                />
-            )}
-            <p className="product-price">{product.price} kr</p>
-            <p>{available > 0 ? "Finns i lager" : "Slut i lager"}</p>
-            {product.description && <p>{product.description}</p>}
-            <button
-                onClick={() => addToCart(product)}
-                disabled={available <= 0}
-            >
-                Lägg i varukorg
-            </button>
-        </div>
+        <main className="product-details-page">
+            <Link className="back-link" to="/">← Tillbaka</Link>
+
+            <article className="product-details-card">
+                <div className="product-details-image-wrap">
+                    {product.image && (
+                        <img
+                            className="product-details-image"
+                            src={product.image}
+                            alt={product.name}
+                        />
+                    )}
+                </div>
+
+                <div className="product-details-content">
+                    <p className="product-eyebrow">Produktinformation</p>
+                    <h1>{product.name}</h1>
+                    <p className="product-details-price">{product.price} kr</p>
+                    <p className={`product-details-stock ${available > 0 ? "in-stock" : "out-of-stock"}`}>
+                        {available > 0 ? "Finns i lager" : "Slut i lager"}
+                    </p>
+                    {product.description && <p className="product-details-description">{product.description}</p>}
+                    <button
+                        className="product-details-button"
+                        onClick={() => addToCart(product)}
+                        disabled={available <= 0}
+                    >
+                        Lägg i varukorg
+                    </button>
+                </div>
+            </article>
+        </main>
     );
 }

@@ -62,8 +62,8 @@ export default function Checkout() {
                     total: currencyResult.amount + shippingCost,
                     currency: currencyResult.currency,
                     formattedTotal: (currencyResult.amount + shippingCost).toLocaleString("sv-SE", {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
                     }) + " " + currencyResult.currency,
                     taxAmount: currencyResult.taxAmount,
                     discounts: priceSpec?.discounts ?? [],
@@ -104,15 +104,22 @@ export default function Checkout() {
     if (lines.length === 0) {
         return (
             <div className="checkout-page">
-                <h1>Kassa</h1>
-                <p>Din varukorg är tom — det finns inget att beställa.</p>
+                <header className="checkout-page-header">
+                    <p className="product-eyebrow">Slutför ditt köp</p>
+                    <h1>Kassa</h1>
+                    <p>Din varukorg är tom — det finns inget att beställa.</p>
+                </header>
             </div>
         );
     }
 
     return (
         <div className="checkout-page">
-            <h1>Kassa</h1>
+            <header className="checkout-page-header">
+                <p className="product-eyebrow">Slutför ditt köp</p>
+                <h1>Kassa</h1>
+                <p>Kontrollera din beställning, välj frakt och ange din e-postadress.</p>
+            </header>
 
             {priceError && <p className="checkout-error">{priceError}</p>}
 
@@ -133,11 +140,11 @@ export default function Checkout() {
 
                 <p>
                     <strong>Summa (exkl. moms):{" "}
-                            {grandTotal.toLocaleString("sv-SE", {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            })}{" "}
-                            kr
+                        {grandTotal.toLocaleString("sv-SE", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}{" "}
+                        kr
                     </strong>
                 </p>
 

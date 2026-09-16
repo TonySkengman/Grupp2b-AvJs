@@ -8,10 +8,18 @@ export default function Cart() {
 
     return (
         <div className="cart-page">
-            <h1>Din varukorg</h1>
+            <header className="cart-page-header">
+                <p className="product-eyebrow">Din beställning</p>
+                <h1>Din varukorg</h1>
+                <p>Granska dina produkter och fortsätt till kassan när du är redo.</p>
+            </header>
 
             {lines.length === 0 ? (
-                <p>Du har inte lagt till några produkter än.</p>
+                <section className="cart-empty-state">
+                    <h2>Varukorgen är tom</h2>
+                    <p>Du har inte lagt till några produkter än.</p>
+                    <Link className="cart-continue-link" to="/">Tillbaka till produkterna</Link>
+                </section>
             ) : (
                 <>
                     <ul className="cart-line-list">
