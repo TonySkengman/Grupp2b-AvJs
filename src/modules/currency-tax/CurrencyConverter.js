@@ -1,10 +1,12 @@
-// Denna fil har tre ansvar:
-// Hämta valutakurser från /api/rates
-// Cacha dem
-// Konvertera mellan SEK, EUR och USD
+// Ansvarar för valutakurser och valutakonvertering
+// Hämtar kurser från /api/rates och cachar dem mellan anrop
+
+import {
+    ExchangeRateError,
+    ValidationError
+} from "./errors.js";
 
 export default class CurrencyConverter {
-
     // Cache för valutakurser så API:t inte behöver anropas varje gång
     constructor() {
         this.rates = null;
@@ -16,84 +18,123 @@ export default class CurrencyConverter {
             return this.rates;
         }
 
-        const response = await fetch('/api/rates');
+        let response;
 
-        // Stoppar körningen om API-anropet misslyckas
-        if (!response.ok) {
-            throw new Error('Kunde inte hämta valutakurser');
+        try {
+            response = await fetch("/api/rates");
+        } catch {
+            throw new ExchangeRateError(
+                "Kunde inte ansluta till tjänsten för valutakurser"
+            );
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+            throw new ExchangeRateError(
+                `Kunde inte hämta valutakurser. Servern svarade med status ${response.status}`
+            );
+        }
+
+        let data;
+
+        try {
+            // Gör om API-svaret från JSON till JavaScript-data
+            data = await response.json();
+        } catch {
+            throw new ExchangeRateError(
+                "Valutakurserna kunde inte läsas från serverns svar"
+            );
+        }
 
         // Kontrollerar att API:t returnerar en lista
         if (!Array.isArray(data)) {
-            throw new Error('Ogiltigt format i valutakurser');
+            throw new ExchangeRateError(
+                "Valutakurserna från servern har ogiltigt format"
+            );
         }
 
+        // Map för att lagra valutakod tillsammans med valutakurs
         const rates = new Map();
 
-        // Validerar och sparar varje valutakurs
         for (const item of data) {
             if (
-                typeof item.currency !== 'string' ||
-                typeof item.rateFromSEK !== 'number' ||
+                typeof item.currency !== "string" ||
+                typeof item.rateFromSEK !== "number" ||
                 !Number.isFinite(item.rateFromSEK) ||
                 item.rateFromSEK <= 0
             ) {
-                throw new Error('Ogiltig valutakurs från API:t');
+                throw new ExchangeRateError(
+                    "Servern returnerade en ogiltig valutakurs"
+                );
             }
 
-            // Förhindrar dubbla poster för samma valuta
             if (rates.has(item.currency)) {
-                throw new Error(`Dubblett av valutan: ${item.currency}`);
+                throw new ExchangeRateError(
+                    `Valutan "${item.currency}" förekommer flera gånger i valutakurserna`
+                );
             }
 
             rates.set(item.currency, item.rateFromSEK);
         }
 
-        const requiredCurrencies = ['SEK', 'EUR', 'USD'];
+        const requiredCurrencies = ["SEK", "EUR", "USD"];
 
-        // Arrow funktion för att kontrollera att alla nödvändiga valutor finns
+        // Arrow-funktion som används av find() för att hitta en valuta som saknas
         const missingCurrency = requiredCurrencies.find(
             currency => !rates.has(currency)
         );
 
         if (missingCurrency !== undefined) {
-            throw new Error(`Valutakurs saknas för: ${missingCurrency}`);
+            throw new ExchangeRateError(
+                `Valutakurs saknas för ${missingCurrency}`
+            );
         }
 
         // SEK är basvalutan och ska alltid ha kursen 1
-        if (rates.get('SEK') !== 1) {
-            throw new Error('SEK måste ha valutakursen 1');
+        if (rates.get("SEK") !== 1) {
+            throw new ExchangeRateError(
+                "SEK måste ha valutakursen 1 eftersom SEK är basvalutan"
+            );
         }
 
-        // Sparar endast validerade kurser i cachen
         this.rates = rates;
 
         return this.rates;
     }
 
-    // Konverterar ett valutamärkt belopp till vald valuta
     async convert(money, targetCurrency) {
         if (
             money === null ||
-            typeof money !== 'object' ||
-            typeof money.amount !== 'number' ||
+            typeof money !== "object" ||
+            typeof money.amount !== "number" ||
             !Number.isFinite(money.amount)
         ) {
-            throw new Error('Beloppet måste vara ett giltigt nummer');
+            throw new ValidationError(
+                "Beloppet som ska konverteras måste vara ett giltigt nummer"
+            );
         }
 
         if (money.amount < 0) {
-            throw new Error('Beloppet får inte vara negativt');
+            throw new ValidationError(
+                "Beloppet som ska konverteras får inte vara negativt"
+            );
         }
 
-        if (typeof money.currency !== 'string') {
-            throw new Error('Beloppet måste ha en giltig valuta');
+        if (
+            typeof money.currency !== "string" ||
+            money.currency.trim() === ""
+        ) {
+            throw new ValidationError(
+                "Källvaluta saknas eller är ogiltig"
+            );
         }
 
-        if (typeof targetCurrency !== 'string') {
-            throw new Error('Målvalutan saknas eller är ogiltig');
+        if (
+            typeof targetCurrency !== "string" ||
+            targetCurrency.trim() === ""
+        ) {
+            throw new ValidationError(
+                "Målvaluta saknas eller är ogiltig"
+            );
         }
 
         const rates = await this.getRates();
@@ -101,20 +142,21 @@ export default class CurrencyConverter {
         const sourceRate = rates.get(money.currency);
         const targetRate = rates.get(targetCurrency);
 
-        // Stoppar okända valutor
         if (sourceRate === undefined) {
-            throw new Error(`Okänd källvaluta: ${money.currency}`);
+            throw new ExchangeRateError(
+                `Valutakurs saknas för källvalutan ${money.currency}`
+            );
         }
 
         if (targetRate === undefined) {
-            throw new Error(`Okänd målvaluta: ${targetCurrency}`);
+            throw new ExchangeRateError(
+                `Valutakurs saknas för målvalutan ${targetCurrency}`
+            );
         }
 
-        // Räknar först om till SEK och sedan vidare till målvalutan
         const amountInSEK = money.amount / sourceRate;
         const convertedAmount = amountInSEK * targetRate;
 
-        // Returnerar alltid beloppet tillsammans med dess valuta
         return {
             amount: convertedAmount,
             currency: targetCurrency
