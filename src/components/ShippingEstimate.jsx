@@ -22,9 +22,6 @@ export default function ShippingEstimate({ onQuoteSelected }) {
 
     async function handleSubmit(values) {
         setError(null);
-        setQuotes(null);
-        setSelectedCarrierId(null);
-        onQuoteSelected?.(null);
         setLoading(true);
 
         try {
@@ -36,18 +33,20 @@ export default function ShippingEstimate({ onQuoteSelected }) {
             }));
 
             const result = await modules.Shipping.run(values, { cartLines });
-
             setQuotes(result);
 
-            // ShippingQuoteService sorterar på pris
-            // Billigaste alternativet är förvalt
+            const stillAvailable = result.find(
+                (quote) => quote.carrierId === selectedCarrierId
+            );
+            const nextSelected = stillAvailable ?? result[0] ?? null;
 
-            if (result.length > 0) {
-                setSelectedCarrierId(result[0].carrierId);
-                onQuoteSelected?.(result[0]);
-            }
+            setSelectedCarrierId(nextSelected?.carrierId ?? null);
+            onQuoteSelected?.(nextSelected);
         } catch (err) {
             setError(err.message);
+            setQuotes(null);
+            setSelectedCarrierId(null);
+            onQuoteSelected?.(null);
         } finally {
             setLoading(false);
         }
@@ -60,15 +59,14 @@ export default function ShippingEstimate({ onQuoteSelected }) {
 
     return (
         <div className="shipping-estimate">
-            <h2>Fraktalternativ</h2>
             <GenericForm
                 fields={modules.ShippingDescriptor.fields}
                 initialValues={{ destinationZone: "" }}
-                submitLabel="Beräkna frakt"
                 onSubmit={handleSubmit}
+                autoSubmit 
             />
 
-            {loading && <p className="shipping-estimate-message">Beräknar frakt...</p>}
+            {loading && <p>Beräknar frakt...</p>}
             {error && <p className="field-error">{error}</p>}
 
             {quotes && (
