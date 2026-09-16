@@ -127,6 +127,32 @@ nav a:hover {
   margin: 0 0 10px;
 }
 
+.home-currency-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.home-currency-picker select {
+  min-width: 120px;
+  height: 42px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  color: #1f2937;
+  font: inherit;
+  cursor: pointer;
+}
+
+.home-currency-picker select:focus {
+  outline: 2px solid #2f5695;
+  outline-offset: 1px;
+}
+
 .product-price {
   margin: 0 0 8px;
 
@@ -1185,6 +1211,36 @@ nav a:hover {
 .category-filter select:hover {
   border-color: #888;
 }
+
+/* Home controls */
+.product-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.product-controls .category-filter {
+  margin: 0;
+}
+
+.product-controls .home-currency-picker {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .product-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
 
 /* Campaign Code Input */
 .campaign-code-input {
