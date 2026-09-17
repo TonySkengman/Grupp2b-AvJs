@@ -11,7 +11,8 @@ export default function Cart() {
             <header className="cart-page-header">
                 <p className="product-eyebrow">Din beställning</p>
                 <h1>Din varukorg</h1>
-                <p>Granska dina produkter och fortsätt till kassan när du är redo.</p>
+                <p>Granska dina produkter och fortsätt till kassan när du är redo</p>
+                <p>Frakt beräknas i nästa steg</p>
             </header>
 
             {lines.length === 0 ? (

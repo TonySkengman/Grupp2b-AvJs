@@ -542,7 +542,7 @@ nav a:hover {
   margin-bottom: 24px;
 }
 
-.cart-page-header>p:last-child {
+.cart-page-header>p {
   margin: 0;
   color: #6b7280;
 }
@@ -809,8 +809,8 @@ nav a:hover {
 }
 
 .cart-line img {
-  width: 60px;
-  height: 60px;
+  width: 96px;
+  height: 96px;
 
   object-fit: contain;
   flex-shrink: 0;
@@ -823,12 +823,15 @@ nav a:hover {
 }
 
 .cart-line-details {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
 
   flex: 1;
+  padding-right: 100px;
 }
 
 .cart-line-name {
@@ -870,7 +873,14 @@ nav a:hover {
 /* Remove button */
 
 .remove-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
   width: fit-content;
+  margin: 0;
+
+  transform: translateY(-50%);
 
   padding: 5px 9px;
 
@@ -1164,8 +1174,8 @@ nav a:hover {
 
   .cart-line img,
   .checkout-line img {
-    width: 50px;
-    height: 50px;
+    width: 72px;
+    height: 72px;
   }
 
   .checkout-confirm-btn {
@@ -1366,6 +1376,8 @@ nav a:hover {
   grid-column: 1;
   grid-row: 3;
   margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 13px;
 }
 
 .campaign-code-input .field-error {
@@ -1409,6 +1421,7 @@ nav a:hover {
 .campaign-code-chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   list-style: none;
   padding: 0;
