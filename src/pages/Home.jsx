@@ -7,6 +7,7 @@ import { useCart } from "../context/CartContext";
 export default function Home() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [includeTax, setIncludeTax] = useState(true);
 
     const { currency, setCurrency } = useCart();
 
@@ -26,6 +27,10 @@ export default function Home() {
         getProducts();
     }, []);
 
+    function toggleTax() {
+        setIncludeTax(previous => !previous);
+    }
+
     return (
         <div>
             <div className="product-controls">
@@ -36,6 +41,7 @@ export default function Home() {
 
                 <label className="home-currency-picker">
                     <span>Valuta:</span>
+
                     <select
                         value={currency}
                         onChange={(event) =>
@@ -47,9 +53,22 @@ export default function Home() {
                         <option value="USD">USD</option>
                     </select>
                 </label>
+
+                <button
+                    type="button"
+                    className="tax-toggle-button"
+                    onClick={toggleTax}
+                >
+                    {includeTax
+                        ? "Visa exkl. moms"
+                        : "Visa inkl. moms"}
+                </button>
             </div>
 
-            <ProductsList products={filteredProducts} />
+            <ProductsList
+                products={filteredProducts}
+                includeTax={includeTax}
+            />
         </div>
     );
 }

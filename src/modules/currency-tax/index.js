@@ -29,6 +29,7 @@ export default class CurrencyModule {
 
     async run(values, context) {
         const targetCurrency = values?.currency;
+        const includeTax = values?.includeTax !== false;
         const cartLines = context?.cartLines;
 
         if (
@@ -93,15 +94,18 @@ export default class CurrencyModule {
             }
 
             // Räknar ut radens nettobelopp genom pris gånger antal
-            const netAmount = line.unitPrice * line.quantity;
+            const netAmount =
+                line.unitPrice * line.quantity;
 
-            const grossAmount = this.taxCalculator.calculateGross(
-                netAmount,
-                line.taxCategory
-            );
+            const amountToConvert = includeTax
+                ? this.taxCalculator.calculateGross(
+                    netAmount,
+                    line.taxCategory
+                )
+                : netAmount;
 
             const money = {
-                amount: grossAmount,
+                amount: amountToConvert,
                 currency: line.currency
             };
 
@@ -115,12 +119,15 @@ export default class CurrencyModule {
         }
 
         const amount =
-            Math.round((total + Number.EPSILON) * 100) / 100;
+            Math.round(
+                (total + Number.EPSILON) * 100
+            ) / 100;
 
-        const formattedPrice = new Intl.NumberFormat("sv-SE", {
-            style: "currency",
-            currency: targetCurrency
-        }).format(amount);
+        const formattedPrice =
+            new Intl.NumberFormat("sv-SE", {
+                style: "currency",
+                currency: targetCurrency
+            }).format(amount);
 
         return {
             amount,

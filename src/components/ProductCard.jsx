@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import modules from "../modules/moduleMaker.js";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({
+    product,
+    includeTax
+}) {
     const {
         lines,
         addToCart,
@@ -29,7 +32,10 @@ export default function ProductCard({ product }) {
         async function calculatePrice() {
             try {
                 const result = await modules.Currency.run(
-                    { currency },
+                    {
+                        currency,
+                        includeTax
+                    },
                     {
                         cartLines: [
                             {
@@ -67,6 +73,7 @@ export default function ProductCard({ product }) {
         };
     }, [
         currency,
+        includeTax,
         product.name,
         product.price,
         product.currency,
@@ -98,6 +105,12 @@ export default function ProductCard({ product }) {
 
                 <p className="product-price">
                     {formattedPrice ?? "Beräknar pris..."}
+                </p>
+
+                <p className="product-tax-label">
+                    {includeTax
+                        ? "inkl. moms"
+                        : "exkl. moms"}
                 </p>
 
                 {priceError && (

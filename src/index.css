@@ -153,6 +153,37 @@ nav a:hover {
   outline-offset: 1px;
 }
 
+.tax-toggle-button {
+  height: 42px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #2f5695;
+  color: white;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background-color 0.15s ease;
+}
+
+.tax-toggle-button:hover {
+  background-color: #24477f;
+}
+
+.product-tax-label {
+  margin: -3px 0 8px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
 .product-price {
   margin: 0 0 8px;
 

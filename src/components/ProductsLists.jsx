@@ -1,10 +1,17 @@
 import ProductCard from "./ProductCard";
 
-export default function ProductsList({ products }) {
+export default function ProductsList({
+    products,
+    includeTax
+}) {
     return (
         <div className="product-grid">
-            {products.map((p) => (
-                <ProductCard key={p.id} product={p} />
+            {products.map((product) => (
+                <ProductCard
+                    key={product.id}
+                    product={product}
+                    includeTax={includeTax}
+                />
             ))}
         </div>
     );
