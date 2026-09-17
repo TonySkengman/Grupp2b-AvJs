@@ -1269,19 +1269,26 @@ nav a:hover {
 }
 
 .category-filter label {
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
 }
 
 .category-filter select {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  min-width: 150px;
+  height: 42px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
   background-color: white;
+  color: #1f2937;
+  font: inherit;
   cursor: pointer;
 }
 
-.category-filter select:hover {
-  border-color: #888;
+.category-filter select:focus {
+  outline: 2px solid #2f5695;
+  outline-offset: 1px;
 }
 
 /* Home controls */
