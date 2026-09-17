@@ -21,6 +21,18 @@ function Nav() {
     );
 }
 
+function CartToast() {
+    const { toastMessage } = useCart();
+
+    if (!toastMessage) return null;
+
+    return (
+        <div className="cart-toast" role="status" aria-live="polite">
+            {toastMessage}
+        </div>
+    );
+}
+
 function App() {
     return (
         <CartProvider>
@@ -34,6 +46,7 @@ function App() {
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/order-confirmation" element={<OrderConfirmation />} />
                 </Routes>
+                <CartToast />
                 <Footer />
             </BrowserRouter>
         </CartProvider>

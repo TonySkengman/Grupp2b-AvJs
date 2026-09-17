@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import modules from "../modules/moduleMaker.js";
 
 const CartContext = createContext(null);
@@ -29,6 +29,8 @@ export function CartProvider({ children }) {
     const [currencyResult, setCurrencyResult] = useState(null);
     const [currencyError, setCurrencyError] = useState(null);
     const [currencyLoading, setCurrencyLoading] = useState(false);
+    const [toastMessage, setToastMessage] = useState(null);
+    const toastTimeout = useRef(null);
 
     function addToCart(product) {
         setLines(prev => {
@@ -63,7 +65,15 @@ export function CartProvider({ children }) {
                 }
             ];
         });
+
+        setToastMessage("Tillagt i varukorgen!");
+        clearTimeout(toastTimeout.current);
+        toastTimeout.current = setTimeout(() => {
+            setToastMessage(null);
+        }, 2500);
     }
+
+    useEffect(() => () => clearTimeout(toastTimeout.current), []);
 
     function removeFromCart(productId) {
         setLines(prev =>
@@ -204,6 +214,7 @@ export function CartProvider({ children }) {
                 currencyResult,
                 currencyError,
                 currencyLoading,
+                toastMessage,
             }}
         >
             {children}

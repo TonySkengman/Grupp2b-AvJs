@@ -17,7 +17,7 @@ export default class ShippingModule {
                 required: true,
                 options: [
                     { value: 'SE', label: 'Sverige' },
-                    { value: 'EU', label: 'EU' },
+                    { value: 'EU', label: 'Europa' },
                     { value: 'WORLD', label: 'Övriga världen' }
                 ]
             }
